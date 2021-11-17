@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Beranda</a></li>
+              <li class="breadcrumb-item active">Pengajuan Surat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,13 +38,13 @@
                 </nav>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr align="center">
                     <th>No</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Surat</th>
+                    <th>Tanggal Pengajuan</th>
+                    <th>Tujuan Surat</th>
                     <th>Keterangan</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -55,14 +55,15 @@
                       <td>{{date('d-m-Y', strtotime($psmhs->tanggal))}}</td>
                       <td>{{$psmhs->tujuan_surat}}</td>
                       <td>{{$psmhs->keterangan}}</td>
-                      <td><btn class="btn {{ ($psmhs->status == 0) ? 'btn-secondary' :
-                          'btn-success'}}">{{ ($psmhs->status == 0) ? 'Sedang diproses' :
-                          'Diterima'}}</btn></td>
+                      <td><badge class="badge {{ ($psmhs->status == 0) ? 'badge-warning' :
+                          'badge-success'}}">{{ ($psmhs->status == 0) ? 'Sedang diproses' :
+                          'Validasi'}}</badge></td>
                       <td>
-                        <a class="btn btn-primary" href="{{url('/mahasiswa/viewsuratmhs',$psmhs->id)}}" role="button">View</a>
-                        <a class="btn btn-warning" href="{{url('/mahasiswa/editsuratmhs',$psmhs->id)}}" role="button">Edit</a>
-                        <a class="btn btn-danger" href="{{url('/mahasiswa/deletesuratmhs',$psmhs->id)}}"
-                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">Delete</a>
+                        <a href="{{url('/mahasiswa/viewsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-eye"></i></a> |
+                        <a href="{{url('/mahasiswa/editsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        <a href="{{url('/mahasiswa/deletesuratmhs',$psmhs->id)}}"
+                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
+                        role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
                   </tr>
                   @endforeach

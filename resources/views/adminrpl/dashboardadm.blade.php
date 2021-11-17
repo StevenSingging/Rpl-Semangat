@@ -12,7 +12,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <ul class="breadcrumb-item"><a href="#">Home</a></ul>
+              <ul class="breadcrumb-item"><a href="#">Dashboard</a></ul>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -97,22 +97,4 @@
               <a href="{{route('beritaacaraadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-
-          <div class="col-sm-4 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3></h3>
-
-                <p>Arsip Surat</p>
-              </div>
-              <div class="icon">
-              <i class="fas fa-envelope"></i>
-              </div>
-              <a href="{{route('arsipsuratadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-        </div>
-</div>
-        <!-- /.row -->
 @endsection

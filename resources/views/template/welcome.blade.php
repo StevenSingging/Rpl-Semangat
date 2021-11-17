@@ -3,39 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('Admin/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('Admin/dist/css/adminlte.min.css') }}">
-   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <body class="hold-transition sidebar-mini">
-<!-- Site wrapper -->
 <div class="wrapper">
-  <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
     </ul>
 
-    <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <li class="nav-item d-none d-sm-inline-block">
         <a class="btn btn-danger" href="{{route('logout')}}" role="button">Log Out</a>
       </li>
     </ul>
   </nav>
-  <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -62,72 +51,72 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          @if(auth()->user()->level == "mahasiswa")
-          <li class="nav-item">
-            <a href="{{route('pengajuansuratmhs')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Pengajuan Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->level == "mahasiswa")
-          <li class="nav-item">
-            <a href="{{route('semuaarsipsuratmhs')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Arsip Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->level == "dosen")
-          <li class="nav-item">
-            <a href="{{route('pengajuansuratdsn')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Pengajuan Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->level == "dosen")
-          <li class="nav-item">
-            <a href="{{route('semuaarsipsuratdsn')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Arsip Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->level == "admin")
-          <li class="nav-item">
-            <a href="{{route('pengajuansuratadm')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Pengajuan Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
-          @if(auth()->user()->level == "admin")
-          <li class="nav-item">
-            <a href="{{route('arsipsuratadm')}}" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Arsip Surat
-                <i class="right fas fa-angle-right"></i>
-              </p>
-            </a>
-          </li>
-          @endif
+            @if(auth()->user()->level == "mahasiswa")
+            <li class="nav-item">
+                <a href="{{route('pengajuansuratmhs')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Pengajuan Surat
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
+            @if(auth()->user()->level == "dosen")
+            <li class="nav-item">
+                <a href="{{route('pengajuansuratdsn')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Pengajuan Surat
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
+            @if(auth()->user()->level == "dosen")
+            <li class="nav-item">
+                <a href="{{route('suratmasukdsn')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Surat Masuk
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
+            @if(auth()->user()->level == "admin")
+            <li class="nav-item">
+                <a href="{{route('pengajuansuratadm')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Pengajuan Surat
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
+            @if(auth()->user()->level == "admin")
+            <li class="nav-item">
+                <a href="{{route('kirimsuratadm')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Kirim Surat
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
+            @if(auth()->user()->level == "admin")
+            <li class="nav-item">
+                <a href="{{route('suratkeluaradm')}}" class="nav-link">
+                <i class="nav-icon fas fa-envelope"></i>
+                <p>
+                    Surat Keluar
+                    <i class="right fas fa-angle-right"></i>
+                </p>
+                </a>
+            </li>
+            @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

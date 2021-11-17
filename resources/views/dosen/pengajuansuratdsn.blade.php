@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Beranda</a></li>
+              <li class="breadcrumb-item active">Pengajuan Surat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -55,14 +55,15 @@
                       <td>{{date('d-m-Y', strtotime($dsdsn->tanggal))}}</td>
                       <td>{{$dsdsn->tujuan_surat}}</td>
                       <td>{{$dsdsn->keterangan}}</td>
-                      <td><btn class="btn {{ ($dsdsn->status == 0) ? 'btn-secondary' :
-                          'btn-success'}}">{{ ($dsdsn->status == 0) ? 'Sedang diproses' :
-                          'Diterima'}}</btn></td>
-                      <td>
-                        <a class="btn btn-primary" href="{{url('/dosen/viewsuratdsn',$dsdsn->id)}}" role="button">View</a>
-                        <a class="btn btn-warning" href="{{url('/dosen/editsuratdsn',$dsdsn->id)}}" role="button">Edit</a>
-                        <a class="btn btn-danger" href="{{url('/dosen/deletesuratdsn',$dsdsn->id)}}"
-                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">Delete</a>
+                      <td><badge class="badge {{ ($dsdsn->status == 0) ? 'badge-warning' :
+                          'badge-success'}}">{{ ($dsdsn->status == 0) ? 'Sedang diproses' :
+                          'Diterima'}}</badge></td>
+                      <td align="center">
+                        <a href="{{url('/dosen/viewsuratdsn',$dsdsn->id)}}" role="button"><i class="fas fa-eye"></i></a> |
+                        <a href="{{url('/dosen/editsuratdsn',$dsdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        <a href="{{url('/dosen/deletesuratdsn',$dsdsn->id)}}"
+                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
+                        role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
                   </tr>
                   @endforeach

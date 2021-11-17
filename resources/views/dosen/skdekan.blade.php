@@ -13,7 +13,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Home</a></li>
               <li class="breadcrumb-item active">Surat Kegiatan Mahasiswa</li>
             </ol>
           </div><!-- /.col -->

@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title>Arsip Surat</title>
+<title>Form Pengiriman Surat</title>
 @section('content')
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Form Pengiriman Surat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,35 +27,41 @@
             <div class="card">
               <div class="card-body">
                 <nav class="navbar navbar-light bg-light">
-                    <h1>Arsip Surat</h1>
+                    <h1>Form Pengiriman Surat</h1>
                 </nav>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID Surat</th>
                     <th>Tanggal</th>
+                    <th>Jenis Surat</th>
                     <th>Keterangan</th>
-                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            <a class="btn btn-primary" href="" role="button">Unduh</a>
-                            <a class="btn btn-warning" href="" role="button">Edit</a>
-                            <a class="btn btn-danger" href=""
-                            onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">Delete</a>
+                  @php $no=1; @endphp
+                  @foreach($asurat as $asadm)
+                  <tr align="center">
+                    <th scope="row"><?php echo e($no++) + (($asurat->currentPage()-1) * $asurat->perPage()) ?></th>
+                      <td>{{date('d-m-Y', strtotime($asadm->tanggal))}}</td>
+                      <td>{{$asadm->tujuan_surat}}</td>
+                      <td>{{$asadm->keterangan}}</td>
+                      <td><badge class="badge {{ ($asadm->status == 0) ? 'badge-warning' :
+                          'badge-success'}}">{{ ($asadm->status == 0) ? 'Sedang diproses' :
+                          'Validasi'}}</badge></td>
+                      <td>
+                        <a href="{{route('simpansuratdsn')}}"
+                        onclick="return confirm('Apakah Anda yakin data akan dikirim ?')" role="button">Kirim<a>
                         </td>
-                    </tr>
+                  </tr>
+                  @endforeach
                   </tbody>
-                </table>
+                </table><br>
               </div>
               <!-- /.card-body -->
+            </div>
             </div>
             <!-- /.card -->
             @endsection

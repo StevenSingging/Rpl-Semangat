@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title> Edit Surat</title>
+<title> Detail Surat</title>
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -10,7 +10,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Beranda</a></li>
               <li class="breadcrumb-item active">Detail Surat</li>
             </ol>
           </div><!-- /.col -->

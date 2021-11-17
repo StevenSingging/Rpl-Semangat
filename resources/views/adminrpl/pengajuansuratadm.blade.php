@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Pengajuan Surat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -55,14 +55,15 @@
                       <td>{{date('d-m-Y', strtotime($asadm->tanggal))}}</td>
                       <td>{{$asadm->tujuan_surat}}</td>
                       <td>{{$asadm->keterangan}}</td>
-                      <td><btn class="btn {{ ($asadm->status == 0) ? 'btn-secondary' :
-                          'btn-success'}}">{{ ($asadm->status == 0) ? 'Sedang diproses' :
-                          'Diterima'}}</btn></td>
+                      <td><badge class="badge {{ ($asadm->status == 0) ? 'badge-warning' :
+                          'badge-success'}}">{{ ($asadm->status == 0) ? 'Sedang diproses' :
+                          'Validasi'}}</badge></td>
                       <td>
-                        <a class="btn btn-primary" href="{{url('/adminrpl/viewsuratadm',$asadm->id)}}" role="button">View</a>
-                        <a class="btn btn-warning" href="{{url('/adminrpl/editsuratadm',$asadm->id)}}" role="button">Edit</a>
-                        <a class="btn btn-danger" href="{{url('/adminrpl/deletesuratadm',$asadm->id)}}"
-                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">Delete</a>
+                        <a href="{{url('/adminrpl/viewsuratadm',$asadm->id)}}" role="button"><i class="fas fa-eye"></i></a> |
+                        <a href="{{url('/adminrpl/editsuratadm',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        <a href="{{url('/adminrpl/deletesuratadm',$asadm->id)}}"
+                        onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">
+                        <i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
                   </tr>
                   @endforeach

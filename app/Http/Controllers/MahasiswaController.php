@@ -19,14 +19,20 @@ class MahasiswaController extends Controller
     public function suratkegiatanmhs(){
         return view('mahasiswa.suratkegiatanmhs');
     }
-    public function arsipsuratmhs(){
-        return view('mahasiswa.arsipsuratmhs');
-    }
 
     //Tampilan Surat Mahasiswa
     public function pengajuansuratmhs(){
-        $psurat = PengajuanSurat::where('niuser','801')->paginate(5);
+        $psurat = PengajuanSurat::where('niuser','801')
+        ->paginate(5);
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
+    }
+
+    //Tampilan Seluruh Surat Mahasiswa
+    public function suratmasukmhs(){
+        $psurat = PengajuanSurat::where('niuser','801')
+        ->where('validasi','1')
+        ->paginate(5);
+        return view('mahasiswa.suratmasukmhs',compact('psurat'));
     }
 
     //CRUD Surat Mahasiswa
@@ -74,11 +80,11 @@ class MahasiswaController extends Controller
     //Cari Surat
     public function searchmhs(Request $request) {
         $cari = $request->key;
-        $psurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")->paginate();
+        $psurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")
+        ->where('niuser','801')
+        ->where('status',null)
+        ->paginate();
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
 
-    public function semuaarsipsuratmhs(){
-        return view('mahasiswa.semuaarsipsuratmhs');
-    }
 }

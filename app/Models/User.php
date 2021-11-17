@@ -43,10 +43,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function role(){
-        return $this->belongsTo(Role::class);
-    }
     function niuser(){
-		return $this->hasOne('App\Permohonan');
+		return $this->belongsTo('App\PengajuanSurat');
 	}
 }

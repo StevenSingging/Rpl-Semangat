@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title>Arsip Surat</title>
+<title>Surat Masuk</title>
 @section('content')
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Beranda</a></li>
+              <li class="breadcrumb-item active">Surat Masuk</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,31 +27,34 @@
             <div class="card">
               <div class="card-body">
                 <nav class="navbar navbar-light bg-light">
-                    <h1>Arsip Surat</h1>
+                    <h1>Surat Masuk</h1>
                 </nav>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr align="center">
                     <th>No</th>
                     <th>ID Surat</th>
                     <th>Tanggal</th>
                     <th>Keterangan</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                    <tr>
+                  @php $no=1; @endphp
+                  @foreach($dsurat as $dsdsn)
+                    <tr align="center">
+                        <th scope="row"><?php echo e($no++) + (($dsurat->currentPage()-1) * $dsurat->perPage()) ?></th>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{date('d-m-Y', strtotime($dsdsn->tanggal))}}</td>
+                        <td>{{$dsdsn->keterangan}}</td>
                         <td>
-                            <a class="btn btn-primary" href="" role="button">Unduh</a>
-                            <a class="btn btn-warning" href="" role="button">Edit</a>
-                            <a class="btn btn-danger" href=""
-                            onclick="return confirm('Apakah Anda yakin data akan dihapus ?')" role="button">Delete</a>
+                            <a href="#" role="button"><i class="fas fa-download"></i></a> |
+                            <a href="#" role="button"><i class="fas fa-user-edit"></i></a> |
+                            <a href="#" onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
+                            role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

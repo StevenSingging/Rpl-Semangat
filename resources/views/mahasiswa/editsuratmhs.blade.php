@@ -30,13 +30,13 @@
                       <!-- text input -->
                       <div class="form-group">
                         <label>NIM</label>
-                        <input type="text" class="form-control" style=width:150px name="niuser" placeholder="NIM" value="{{$psurat->niuser}}">
+                        <input type="text" class="form-control" style=width:150px name="niuser" placeholder="NIM" value="{{$psurat->niuser}}" readonly>
                       </div>
                     </div>
                     <div class="col-sm-3">
                       <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" class="form-control" name= "name" placeholder="{{auth()->user()->name}}" disabled>
+                        <input type="text" class="form-control" name= "name" placeholder="{{$psurat->niuser->name}}" readonly>
                       </div>
                     </div>
                   </div>

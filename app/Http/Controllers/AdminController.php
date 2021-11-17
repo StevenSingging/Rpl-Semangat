@@ -33,11 +33,36 @@ class AdminController extends Controller
 
     //Tampilan Surat adminrpl
     public function pengajuansuratadm(){
-        $asurat = PengajuanSurat::paginate();
+        $asurat = PengajuanSurat::where('status',null)
+        ->paginate(5);
         return view('adminrpl.pengajuansuratadm',compact('asurat'));
     }
 
+    public function suratkeluaradm(){
+        $asurat = PengajuanSurat::where('validasi',1)
+        ->paginate(5);
+        return view('adminrpl.suratkeluaradm',compact('asurat'));
+    }
+
+    public function kirimsuratadm() {
+        $asurat = PengajuanSurat::where('status',1)
+        ->paginate(5);
+        return view('adminrpl.kirimsuratadm',compact('asurat'));
+    }
     //CRUD Surat adminrpl
+
+    public function berhasilkirimadm(Request $request){
+        //dd($request->all());
+        PengajuanSurat::create([
+            'niuser' => $request -> niuser,
+            'tanggal' => $request -> tanggal,
+            'tujuan_surat' => $request -> tujuan_surat,
+            'nama_mitra' => $request -> nama_mitra,
+            'alamat_mitra' => $request -> alamat_mitra,
+            'keterangan' => $request -> keterangan
+        ]);
+    return redirect('adminrpl/pengajuansuratadm');
+    }
 
     public function tambahsuratadm() {
         return view('adminrpl.tambahsuratadm');
@@ -86,7 +111,8 @@ class AdminController extends Controller
         return view('adminrpl.pengajuansuratadm',compact('asurat'));
     }
 
-    public function semuaarsipsuratadm(){
-        return view('adminrpl.semuaarsipsuratdsn');
+    public function surattugas(){
+        $asurat = PengajuanSurat::paginate(5);
+        return view('adminrpl.surattugas',compact('asurat'));
     }
 }

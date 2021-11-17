@@ -18,22 +18,22 @@
 <table align="center" >
     <tr>
         <td>Kepada</td>
-        <td width="500">:</td>
+        <td width="500">: </td>
     </tr>
     <tr>
         <td>Perihal</td>
-        <td width="500">: Surat Tugas</td>
+        <td width="500">: </td>
     </tr>
     <tr>
         <td>Lampiran</td>
-        <td width="500">:</td>
+        <td width="500">: </td>
     </tr>
     <tr>
-        <td height="50" colspan="2">Jarak</td>
+        <td height="50" colspan="2"></td>
     </tr>
     <tr>
         <td colspan ="2">Dengan Hormat,<br>
-        Sehubungan dengan telah terjadinya bencana alam yeng terjadi di Palu, 
+        Sehubungan dengan telah terjadinya bencana alam yeng terjadi di Palu,
         Donggala, dan sekitanya,<br>maka kami menugaskan saudara-saudara kami sebagai berikut: </td>
     </tr>
     <tr>
@@ -59,6 +59,5 @@
         <td><center><u>Arsyadhelsing</u></center></td>
     </tr>
 <body>
-
 </body>
 </html>

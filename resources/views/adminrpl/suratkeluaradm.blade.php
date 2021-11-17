@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title> Surat Terkirim</title>
+<title>Surat Keluar</title>
 @section('content')
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -13,8 +13,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
-              <li class="breadcrumb-item active">Arsip Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Surat Keluar</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,18 +26,35 @@
           <div class="col-12">
             <div class="card">
               <div class="card-body">
+                <nav class="navbar navbar-light bg-light">
+                    <h1>Surat Keluar</h1>
+                </nav>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
-                    <th>#</th>
+                  <tr align="center">
+                    <th>No</th>
                     <th>ID Surat</th>
                     <th>Tanggal</th>
                     <th>Keterangan</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-
+                  @php $no=1; @endphp
+                  @foreach($asurat as $asadm)
+                    <tr align="center">
+                    <th scope="row"><?php echo e($no++) + (($asurat->currentPage()-1) * $asurat->perPage()) ?></th>
+                        <td></td>
+                        <td>{{date('d-m-Y', strtotime($asadm->tanggal))}}</td>
+                        <td>{{$asadm->keterangan}}</td>
+                        <td>
+                            <a href="#" role="button"><i class="fas fa-download"></i></a> |
+                            <a href="#" role="button"><i class="fas fa-user-edit"></i></a> |
+                            <a href="#" onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
+                            role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
+                        </td>
+                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>

@@ -13,9 +13,6 @@ use App\Http\Controllers\RegisterController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::get('/surattugas', function () {
-//    return view('surattugas');
-//});
 
 //Log in dan Log out
 Route::get('/', function () {
@@ -35,8 +32,7 @@ Route::group(['middleware' => ['auth','ceklevel:mahasiswa']],function(){
 //Dashboard Mahasiswa
 Route::get('/mahasiswa/suratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@suratkegiatanmhs')->name('suratkegiatanmhs');
 Route::get('/mahasiswa/surattugasmhs', '\App\Http\Controllers\MahasiswaController@surattugasmhs')->name('surattugasmhs');
-Route::get('/mahasiswa/arsipsuratmhs', '\App\Http\Controllers\MahasiswaController@arsipsuratmhs')->name('arsipsuratmhs');
-Route::get('/mahasiswa/semuaarsipsuratmhs', '\App\Http\Controllers\MahasiswaController@semuaarsipsuratmhs')->name('semuaarsipsuratmhs');
+Route::get('/mahasiswa/suratmasukmhs', '\App\Http\Controllers\MahasiswaController@suratmasukmhs')->name('suratmasukmhs');
 
 //CRUD Surat Mahasiswa
 Route::get('/mahasiswa/pengajuansuratmhs', '\App\Http\Controllers\MahasiswaController@pengajuansuratmhs')->name('pengajuansuratmhs');
@@ -58,8 +54,7 @@ Route::group(['middleware' => ['auth','ceklevel:dosen']],function(){
 //Dashboard Dosen
 Route::get('/dosen/skdekan', '\App\Http\Controllers\DosenController@skdekan')->name('skdekan');
 Route::get('/dosen/surattugasdsn', '\App\Http\Controllers\DosenController@surattugasdsn')->name('surattugasdsn');
-Route::get('/dosen/arsipsuratdsn', '\App\Http\Controllers\DosenController@arsipsuratdsn')->name('arsipsuratdsn');
-Route::get('/dosen/semuaarsipsuratdsn', '\App\Http\Controllers\DosenController@semuaarsipsuratdsn')->name('semuaarsipsuratdsn');
+Route::get('/dosen/suratmasukdsn', '\App\Http\Controllers\DosenController@suratmasukdsn')->name('suratmasukdsn');
 
 //CRUD Surat Dosen
 Route::get('/dosen/pengajuansuratdsn', '\App\Http\Controllers\DosenController@pengajuansuratdsn')->name('pengajuansuratdsn');
@@ -81,11 +76,10 @@ Route::group(['middleware' => ['auth','ceklevel:admin']],function(){
 //Dashboard Admin
 Route::get('/adminrpl/skdekanadm', '\App\Http\Controllers\AdminController@skdekanadm')->name('skdekanadm');
 Route::get('/adminrpl/suratketmhsadm', '\App\Http\Controllers\AdminController@suratketmhsadm')->name('suratketmhsadm');
-Route::get('/adminrpl/arsipsuratadm', '\App\Http\Controllers\AdminController@arsipsuratadm')->name('arsipsuratadm');
 Route::get('/adminrpl/suratundanganadm', '\App\Http\Controllers\AdminController@suratundanganadm')->name('suratundanganadm');
 Route::get('/adminrpl/surattugasadm', '\App\Http\Controllers\AdminController@surattugasadm')->name('surattugasadm');
 Route::get('/adminrpl/beritaacaraadm', '\App\Http\Controllers\AdminController@beritaacaraadm')->name('beritaacaraadm');
-Route::get('/adminrpl/semuaarsipsuratadm', '\App\Http\Controllers\AdminController@semuaarsipsuratadm')->name('semuaarsipsuratadm');
+Route::get('/adminrpl/suratkeluaradm', '\App\Http\Controllers\AdminController@suratkeluaradm')->name('suratkeluaradm');
 
 //CRUD Surat Admin
 Route::get('/adminrpl/pengajuansuratadm', '\App\Http\Controllers\AdminController@pengajuansuratadm')->name('pengajuansuratadm');
@@ -95,6 +89,10 @@ Route::post('/adminrpl/simpansuratadm', '\App\Http\Controllers\AdminController@s
 Route::get('/adminrpl/editsuratadm/{id}', '\App\Http\Controllers\AdminController@editsuratadm')->name('editsuratadm');
 Route::post('/adminrpl/updatesuratadm/{id}', '\App\Http\Controllers\AdminController@updatesuratadm')->name('updatesuratadm');
 Route::get('/adminrpl/deletesuratadm/{id}', '\App\Http\Controllers\AdminController@deletesuratadm')->name('deletesuratadm');
+Route::get('/adminrpl/kirimsuratadm', '\App\Http\Controllers\AdminController@kirimsuratadm')->name('kirimsuratadm');
 
-//Mencari Surat Dosen
+//Mencari Surat Admin
 Route::get('/adminrpl/searchadm','\App\Http\Controllers\AdminController@searchadm')->name('searchadm');
+
+//Cetak Surat
+Route::get('/adminrpl/surattugas','\App\Http\Controllers\AdminController@surattugas')->name('surattugas');

@@ -19,14 +19,20 @@ class DosenController extends Controller
     public function skdekan(){
         return view('dosen.skdekan');
     }
-    public function arsipsuratdsn(){
-        return view('dosen.arsipsuratdsn');
-    }
 
     //Tampilan Surat Dosen
     public function pengajuansuratdsn(){
-        $dsurat = PengajuanSurat::where('niuser','301')->paginate(5);
+        $dsurat = PengajuanSurat::where('niuser','301')
+        ->where('status',null)
+        ->paginate(5);
         return view('dosen.pengajuansuratdsn',compact('dsurat'));
+    }
+
+    public function suratmasukdsn(){
+        $dsurat = PengajuanSurat::where('niuser','301')
+        ->where('status',1)
+        ->paginate(5);
+        return view('dosen.suratmasukdsn',compact('dsurat'));
     }
 
     //CRUD Surat Dosen
@@ -74,12 +80,11 @@ class DosenController extends Controller
     //Cari Surat
     public function searchdsn(Request $request) {
         $cari = $request->key;
-        $dsurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")->paginate();
+        $dsurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")
+        ->where('niuser','301')
+        ->where('status',null)
+        ->paginate();
         return view('dosen.pengajuansuratdsn',compact('dsurat'));
-    }
-
-    public function semuaarsipsuratdsn(){
-        return view('dosen.semuaarsipsuratdsn');
     }
 }
 

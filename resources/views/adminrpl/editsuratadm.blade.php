@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title> Edit Surat</title>
+<title> Form Validasi Surat</title>
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -10,8 +10,8 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Home</a></li>
-              <li class="breadcrumb-item active">Edit Surat</li>
+              <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Dashboard</a></li>
+              <li class="breadcrumb-item active">Form Validasi Surat</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -21,7 +21,7 @@
       <div class="card card-primary card-outline">
             <div class="card-body">
             <nav class="navbar navbar-light bg-light">
-                <h1>Edit Pengajuan Surat</h1>
+                <h1>Form Validasi Surat</h1>
             </nav>
             <form action="{{url('/adminrpl/updatesuratadm',$asurat->id)}}" method="post">
             {{ csrf_field() }}
@@ -82,7 +82,7 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="status" id="status" value="1"
                         @php if (($asurat->status)==1) echo 'checked' @endphp>
-                        <label class="form-check-label" for="exampleRadios2">Diterima</label>
+                        <label class="form-check-label" for="exampleRadios2">Validasi</label>
                     </div>
                     </div>
                 <!-- /.card-body -->
