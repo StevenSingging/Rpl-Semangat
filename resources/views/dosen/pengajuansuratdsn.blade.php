@@ -50,6 +50,7 @@
                   <tbody>
                   @php $no=1; @endphp
                   @foreach($dsurat as $dsdsn)
+                  @if ($dsdsn->niuser == Auth::user()->niuser)
                   <tr align="center">
                     <th scope="row"><?php echo e($no++) + (($dsurat->currentPage()-1) * $dsurat->perPage()) ?></th>
                       <td>{{date('d-m-Y', strtotime($dsdsn->tanggal))}}</td>
@@ -66,6 +67,7 @@
                         role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
                   </tr>
+                  @endif
                   @endforeach
                   </tbody>
                 </table><br>

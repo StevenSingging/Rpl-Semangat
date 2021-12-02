@@ -22,36 +22,47 @@ class MahasiswaController extends Controller
 
     //Tampilan Surat Mahasiswa
     public function pengajuansuratmhs(){
-        $psurat = PengajuanSurat::where('niuser','801')
-        ->paginate(5);
+        $psurat = PengajuanSurat::paginate();
+        //return $psurat;
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
 
     //Tampilan Seluruh Surat Mahasiswa
     public function suratmasukmhs(){
-        $psurat = PengajuanSurat::where('niuser','801')
-        ->where('validasi','1')
-        ->paginate(5);
+        $psurat = PengajuanSurat::paginate(5);
         return view('mahasiswa.suratmasukmhs',compact('psurat'));
     }
-
     //CRUD Surat Mahasiswa
 
     public function tambahsuratmhs() {
-        return view('mahasiswa.tambahsuratmhs');
+        $psurat = PengajuanSurat::all();
+        $users = User::all();
+        return view('mahasiswa.tambahsuratmhs',compact('psurat','users'));
     }
 
     public function simpansuratmhs(Request $request){
-        //dd($request->all());
+        $request->validate([
+            'tanggal' => 'required',
+            'nama_mitra' => 'required',
+            'alamat_mitra' => 'required',
+            'keterangan' => 'required',
+
+        ], [
+            'tanggal.required' => 'Tanggal tidak boleh kosong',
+            'nama_mitra.required' => 'Nama Mitra tidak boleh kosong',
+            'alamat_mitra.required' => 'Alamat Mitra tidak boleh kosong',
+            'keterangan.required' => 'Keterangan tidak boleh kosong',
+        ]);
+        //return $request;
         PengajuanSurat::create([
-            'niuser' => $request -> niuser,
+            'user_id' => $request -> user_id,
             'tanggal' => $request -> tanggal,
             'tujuan_surat' => $request -> tujuan_surat,
             'nama_mitra' => $request -> nama_mitra,
             'alamat_mitra' => $request -> alamat_mitra,
             'keterangan' => $request -> keterangan
         ]);
-    return redirect('mahasiswa/pengajuansuratmhs');
+        return redirect('mahasiswa/pengajuansuratmhs');
     }
 
     public function viewsuratmhs($id) {
@@ -81,8 +92,6 @@ class MahasiswaController extends Controller
     public function searchmhs(Request $request) {
         $cari = $request->key;
         $psurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")
-        ->where('niuser','801')
-        ->where('status',null)
         ->paginate();
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }

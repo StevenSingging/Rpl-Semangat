@@ -16,12 +16,12 @@ class RegisterController extends Controller
     public function simpanregistrasi (Request $request){
         //dd($request->all());
         User::create([
+            'niuser' => $request->niuser,
             'name' => $request->name,
             'level' => $request->level,
-            'niuser' => $request->niuser,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'remember_token' => Str::random(60),
+            'remember_token' => Str::random(60)
         ]);
 
         return view('login');

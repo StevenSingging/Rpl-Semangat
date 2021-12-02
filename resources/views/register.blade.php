@@ -21,12 +21,12 @@
       <a href="{{url('/')}}" class="h1"><b>RPL</b> Company</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Silakan melakuka registrasi</p>
+      <p class="login-box-msg">Silakan melakukan registrasi</p>
 
       <form action="{{route('simpanregistrasi')}}" method="post">
       {{ csrf_field() }}
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="name" placeholder="Full name">
+          <input type="text" class="form-control" name="niuser" placeholder="NI_User">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="niuser" placeholder="NI_User">
+          <input type="text" class="form-control" name="name" placeholder="Full name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>

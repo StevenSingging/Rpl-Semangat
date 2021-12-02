@@ -26,19 +26,6 @@
             <form action="{{url('/dosen/updatesuratdsn',$dsurat->id)}}" method="post">
             {{ csrf_field() }}
             <div class="row">
-                    <div class="col-sm-2">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label>NID</label>
-                        <input type="text" class="form-control" style=width:150px name="niuser" placeholder="NIM" value="{{$dsurat->niuser}}">
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" class="form-control" name= "name" placeholder="{{auth()->user()->name}}" disabled>
-                      </div>
-                    </div>
                   </div>
                   <div class="mb-3 row">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal</label>
@@ -70,11 +57,38 @@
                       <input type="text" class="form-control" id="inputPassword" name="keterangan" style=width:250px value="{{$dsurat->keterangan}}">
                     </div>
                   </div>
-                <!-- /.card-body -->
+                  <div class="form-group row">
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Tambah Anggota</label>
+                        <div class="col-2">
+                            <input type="text" class="form-control" id="inputPassword" name="" placeholder="NIK">
+                        </div>
+                        <div class="col-3">
+                            <input type="text" class="form-control" name="" placeholder="Nama" >
+                        </div>
+                        <div class="col-4">
+                            <button class="add-more btn btn-success " type="button"><i class="glyphicon glyphicon-plus"></i> Tambah
+                        </div>
+                  </div>
+                <div class="dosen"></div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
               </div>
               </form>
+
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+            <script type="text/javascript">
+                $(".add-more").on ('click',function(){
+                    adddsn();
+                });
+                function adddsn(){
+                    var dsn =' <div class="control-group"><div class="form-group row"><label for="inputPassword" class="col-sm-2 col-form-label"></label><div class="col-2"><input type="text" class="form-control" id="inputPassword" name="" placeholder="NIM"></div><div class="col-3"><input type="text" class="form-control" name="" placeholder="Nama"></div><div class="col-4"><button class="remove btn btn-danger" type="button"><i class="glyphicon glyphicon-plus"></i> Hapus</div>';
+                    $('.dosen').append(dsn);
+                }
+                // saat tombol remove dklik control group akan dihapus
+                $("body").on("click",".remove",function(){
+                    $(this).parents(".control-group").remove();
+                });
+            </script>
 @endsection

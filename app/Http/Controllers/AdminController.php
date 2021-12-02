@@ -115,4 +115,9 @@ class AdminController extends Controller
         $asurat = PengajuanSurat::paginate(5);
         return view('adminrpl.surattugas',compact('asurat'));
     }
+
+    public function validasi($id) {
+        $asurat = PengajuanSurat::findorfail($id);
+        return view('adminrpl.validasi',compact('asurat'));
+    }
 }

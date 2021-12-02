@@ -30,7 +30,7 @@
                     <h1>Data Pengajuan Surat</h1>
                 </nav>
                 <nav class="navbar navbar-light">
-                <a class="btn btn-secondary" href="{{ route('tambahsuratadm') }}" role="button">Tambah Data</a>
+                <a></a>
                     <form method="GET" action="{{ route('searchadm') }}">
                         <input name="key" value="@php echo old('cari') @endphp" placeholder="Search">
                         <button class="btn btn-dark" type="submit">Search</button>
@@ -38,13 +38,14 @@
                 </nav>
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr align="center">
                     <th>No</th>
-                    <th>Tanggal</th>
-                    <th>Jenis Surat</th>
+                    <th>Pengirim</th>
+                    <th>Tanggal Pengajuan</th>
+                    <th>Tujuan Surat</th>
                     <th>Keterangan</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -52,6 +53,7 @@
                   @foreach($asurat as $asadm)
                   <tr align="center">
                     <th scope="row"><?php echo e($no++) + (($asurat->currentPage()-1) * $asurat->perPage()) ?></th>
+                      <td>{{$asadm->user->niuser}} - {{$asadm->user->name}}</td>
                       <td>{{date('d-m-Y', strtotime($asadm->tanggal))}}</td>
                       <td>{{$asadm->tujuan_surat}}</td>
                       <td>{{$asadm->keterangan}}</td>

@@ -23,8 +23,8 @@
             <nav class="navbar navbar-light bg-light">
                 <h1>Detail Pengajuan Surat</h1>
             </nav><br>
-            <p>NIM : {{$psurat->niuser}}</p>
-            <p>Nama : {{auth()->user()->name}}</p>
+            <p>NIM : {{$psurat->user->niuser}}</p>
+            <p>Nama : {{$psurat->user->name}}</p>
             <p>Tanggal : {{$psurat->tanggal}}</p>
             <p>Tujuan Surat : {{$psurat->tujuan_surat}}</p>
             <p>Nama Mitra : {{$psurat->nama_mitra}}</p>

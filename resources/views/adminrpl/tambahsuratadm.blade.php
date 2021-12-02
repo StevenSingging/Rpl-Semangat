@@ -13,7 +13,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Home</a></li>
+              <li class="breadcrumb-item"><a href="{{route('admin')}}">Home</a></li>
               <li class="breadcrumb-item active">Tambah Surat</li>
             </ol>
           </div><!-- /.col -->
@@ -23,7 +23,7 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{route('simpansuratdsn')}}" method="post">
+            <form action="{{route('simpansuratadm')}}" method="post">
                         {{ csrf_field() }}
                         <div class="row">
                         <div class="col-sm-2">

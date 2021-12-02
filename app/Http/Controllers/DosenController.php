@@ -22,16 +22,12 @@ class DosenController extends Controller
 
     //Tampilan Surat Dosen
     public function pengajuansuratdsn(){
-        $dsurat = PengajuanSurat::where('niuser','301')
-        ->where('status',null)
-        ->paginate(5);
+        $dsurat = PengajuanSurat::paginate(5);
         return view('dosen.pengajuansuratdsn',compact('dsurat'));
     }
 
     public function suratmasukdsn(){
-        $dsurat = PengajuanSurat::where('niuser','301')
-        ->where('status',1)
-        ->paginate(5);
+        $dsurat = PengajuanSurat::paginate(5);
         return view('dosen.suratmasukdsn',compact('dsurat'));
     }
 
@@ -45,6 +41,7 @@ class DosenController extends Controller
         //dd($request->all());
         PengajuanSurat::create([
             'niuser' => $request -> niuser,
+            'name' => $request -> name,
             'tanggal' => $request -> tanggal,
             'tujuan_surat' => $request -> tujuan_surat,
             'nama_mitra' => $request -> nama_mitra,

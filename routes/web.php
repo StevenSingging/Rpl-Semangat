@@ -18,17 +18,17 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/postlogin','\App\Http\Controllers\LoginController@index');
+//Route::get('/postlogin','\App\Http\Controllers\LoginController@index');
 Route::post('/simpanregistrasi', '\App\Http\Controllers\RegisterController@simpanregistrasi')->name('simpanregistrasi');
 Route::get('/register', '\App\Http\Controllers\RegisterController@index')->name('register');
 Route::post('/postlogin','\App\Http\Controllers\LoginController@postlogin')->name('postlogin');
 Route::get('/logout','\App\Http\Controllers\LoginController@logout')->name('logout');
 
 //Mahasiswa
-Route::group(['middleware' => ['auth','ceklevel:mahasiswa']],function(){
+//Route::group(['middleware' => ['auth','ceklevel:mahasiswa']],function(){
     Route::get('/mahasiswa', '\App\Http\Controllers\MahasiswaController@index')->name('mahasiswa');
 
-});
+//});
 //Dashboard Mahasiswa
 Route::get('/mahasiswa/suratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@suratkegiatanmhs')->name('suratkegiatanmhs');
 Route::get('/mahasiswa/surattugasmhs', '\App\Http\Controllers\MahasiswaController@surattugasmhs')->name('surattugasmhs');
@@ -38,6 +38,7 @@ Route::get('/mahasiswa/suratmasukmhs', '\App\Http\Controllers\MahasiswaControlle
 Route::get('/mahasiswa/pengajuansuratmhs', '\App\Http\Controllers\MahasiswaController@pengajuansuratmhs')->name('pengajuansuratmhs');
 Route::get('/mahasiswa/viewsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@viewsuratmhs')->name('viewsuratmhs');
 Route::get('/mahasiswa/tambahsuratmhs', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
+//Route::get('/mahasiswa/tambahsuratmhs/', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
 Route::post('/mahasiswa/simpansuratmhs', '\App\Http\Controllers\MahasiswaController@simpansuratmhs')->name('simpansuratmhs');
 Route::get('/mahasiswa/editsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsuratmhs')->name('editsuratmhs');
 Route::post('/mahasiswa/updatesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratmhs')->name('updatesuratmhs');
@@ -90,6 +91,7 @@ Route::get('/adminrpl/editsuratadm/{id}', '\App\Http\Controllers\AdminController
 Route::post('/adminrpl/updatesuratadm/{id}', '\App\Http\Controllers\AdminController@updatesuratadm')->name('updatesuratadm');
 Route::get('/adminrpl/deletesuratadm/{id}', '\App\Http\Controllers\AdminController@deletesuratadm')->name('deletesuratadm');
 Route::get('/adminrpl/kirimsuratadm', '\App\Http\Controllers\AdminController@kirimsuratadm')->name('kirimsuratadm');
+Route::get('/adminrpl/validasi/{id}', '\App\Http\Controllers\AdminController@validasi')->name('validasi');
 
 //Mencari Surat Admin
 Route::get('/adminrpl/searchadm','\App\Http\Controllers\AdminController@searchadm')->name('searchadm');

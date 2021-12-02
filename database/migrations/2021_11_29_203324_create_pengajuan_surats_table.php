@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengajuanSurat extends Migration
+class CreatePengajuanSuratsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,18 @@ class CreatePengajuanSurat extends Migration
      */
     public function up()
     {
-        Schema::create('pengajuan_surat', function (Blueprint $table) {
+        Schema::create('pengajuan_surats', function (Blueprint $table) {
             $table->id();
-            $table->string('niuser');
-            $table->foreign('niuser')->references('niuser')->on('users');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('jenis_id');
+            $table->unsignedBigInteger('pejabat_id');
+            $table->string('nomor_surat');
             $table->date('tanggal');
-            $table->string('tujuan_surat');
             $table->string('nama_mitra');
             $table->string('alamat_mitra');
             $table->string('keterangan');
             $table->string('status');
+            $table->string('validasi');
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ class CreatePengajuanSurat extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengajuan_surat');
+        Schema::dropIfExists('pengajuan_surats');
     }
 }

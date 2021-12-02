@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -16,7 +16,17 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-  <!-- /.login-logo -->
+    <div class="container">
+    @if(session('postlogin'))
+    <div class="alert alert-danger" role="alert">
+        {{session('postlogin')}}
+    </div>
+    @endif
+    @if(session('logout'))
+    <div class="alert alert-success" role="alert">
+        {{session('logout')}}
+    </div>
+    @endif
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
       <a href="../../index2.html" class="h1"><b>RPL</b> Company</a>

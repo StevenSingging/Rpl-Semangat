@@ -26,19 +26,6 @@
             <form action="{{url('/adminrpl/updatesuratadm',$asurat->id)}}" method="post">
             {{ csrf_field() }}
             <div class="row">
-                    <div class="col-sm-2">
-                      <!-- text input -->
-                      <div class="form-group">
-                        <label>NID</label>
-                        <input type="text" class="form-control" style=width:150px name="niuser" placeholder="NIM" value="{{$asurat->niuser}}">
-                      </div>
-                    </div>
-                    <div class="col-sm-3">
-                      <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" class="form-control" name= "name" placeholder="{{auth()->user()->name}}" disabled>
-                      </div>
-                    </div>
                   </div>
                   <div class="mb-3 row">
                     <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal</label>

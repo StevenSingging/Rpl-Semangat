@@ -21,7 +21,9 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item d-none d-sm-inline-block">
-        <a class="btn btn-danger" href="{{route('logout')}}" role="button">Log Out</a>
+        <a class="btn btn-danger" href="{{route('logout')}}"
+        onclick="return confirm('Apakah Anda yakin akan logout ?')"
+        role="button">Log Out</a>
       </li>
     </ul>
   </nav>
@@ -73,12 +75,12 @@
                 </a>
             </li>
             @endif
-            @if(auth()->user()->level == "dosen")
+            @if(auth()->user()->level == "admin")
             <li class="nav-item">
-                <a href="{{route('suratmasukdsn')}}" class="nav-link">
+                <a href="{{route('tambahsuratadm')}}" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                    Surat Masuk
+                    Buat Surat
                     <i class="right fas fa-angle-right"></i>
                 </p>
                 </a>
@@ -89,7 +91,7 @@
                 <a href="{{route('pengajuansuratadm')}}" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                    Pengajuan Surat
+                    Surat Permohonan
                     <i class="right fas fa-angle-right"></i>
                 </p>
                 </a>
@@ -98,17 +100,6 @@
             @if(auth()->user()->level == "admin")
             <li class="nav-item">
                 <a href="{{route('kirimsuratadm')}}" class="nav-link">
-                <i class="nav-icon fas fa-envelope"></i>
-                <p>
-                    Kirim Surat
-                    <i class="right fas fa-angle-right"></i>
-                </p>
-                </a>
-            </li>
-            @endif
-            @if(auth()->user()->level == "admin")
-            <li class="nav-item">
-                <a href="{{route('suratkeluaradm')}}" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
                     Surat Keluar
