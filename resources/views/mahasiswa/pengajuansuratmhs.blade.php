@@ -88,19 +88,18 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group mt-2">
-                        <label for="exampleFormControlSelect1">Jenis Surat</label>
-                        <select class="form-control" name="jenis_surat">
-                        <option>Pilih Surat</option>
-                        <option value="">Surat Tugas</option>
-                        <option value="">Surat Kegiatan Mahasiswa</option>
-                        </select>
+                <div  class="modal-body" >
+                    <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih Surat</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{route('buatsuratket')}}">Surat keterangan</a>
+                    <a class="dropdown-item" href="{{route('buatsurattgs')}}">Surat Tugas</a>
+                  </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="{{ route('tambahsuratmhs') }}" role="button">Buat Surat</a>
                 </div>
                 </div>
             </div>
