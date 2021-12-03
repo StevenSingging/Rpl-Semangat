@@ -30,7 +30,7 @@
                     <h1>Data Pengajuan Surat</h1>
                 </nav>
                 <nav class="navbar navbar-light">
-                <a class="btn btn-secondary" href="{{ route('tambahsuratdsn') }}" role="button">Tambah Data</a>
+                <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal">Tambah Data</a>
                     <form method="GET" action="{{ route('searchdsn') }}">
                         <input name="key" value="@php echo old('cari') @endphp" placeholder="Search">
                         <button class="btn btn-dark" type="submit">Search</button>
@@ -77,4 +77,29 @@
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Buat Surat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div  class="modal-body" >
+                    <div class="dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih Surat</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{route('buatsuratket')}}">Surat keterangan</a>
+                    <a class="dropdown-item" href="{{route('buatsurattgs')}}">Surat Tugas</a>
+                  </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+                </div>
+            </div>
+            </div>
             @endsection
