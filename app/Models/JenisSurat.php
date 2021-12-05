@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class JenisSurat extends Model
 {
     use HasFactory;
-    protected $guarded = ['id'];
-    public function jenis_surat_jadi(){
-        return $this->belongsToMany(SuratJadi::class);
+    protected $fillable = ['kode_surat','jenis','keterangan'];
+    public function js(){
+        return $this->hasMany(PengajuanSurat::class);
     }
 }

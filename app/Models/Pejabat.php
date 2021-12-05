@@ -9,7 +9,7 @@ class Pejabat extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    public function pejabat_jadi(){
-        return $this->belongsToMany(SuratJadi::class);
+    public function pj(){
+        return $this->hasMany(PengajuanSurat::class);
     }
 }

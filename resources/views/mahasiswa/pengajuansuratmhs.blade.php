@@ -55,7 +55,7 @@
                   <tr align="center">
                     <th scope="row"><?php echo e($no++) + (($psurat->currentPage()-1) * $psurat->perPage()) ?></th>
                       <td>{{date('d-m-Y', strtotime($psmhs->tanggal))}}</td>
-                      <td>{{$psmhs->jenis_surat}}</td>
+                      <td>{{$psmhs->js}}</td>
                       <td>{{$psmhs->keterangan}}</td>
                       <td><badge class="badge {{ ($psmhs->status == 0) ? 'badge-warning' :
                           'badge-success'}}">{{ ($psmhs->status == 0) ? 'Sedang diproses' :
@@ -89,18 +89,19 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group mt-2">
-                        <label for="exampleFormControlSelect1">Jenis Surat</label>
-                        <select class="form-control" name="jenis_surat">
-                        <option>Pilih Surat</option>
-                        <option value="">Surat Tugas</option>
-                        <option value="">Surat Kegiatan Mahasiswa</option>
-                        </select>
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pilih Surat
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{ route('surattugasmhs') }}">Surat Tugas</a>
+                            <a class="dropdown-item" href="{{ route('suratkegiatanmhs') }}">Surat Kegiatan Mahasiswa</a>
+                        </div>
+                        </div>
                     </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="{{ route('tambahsuratmhs') }}" role="button">Buat Surat</a>
                 </div>
                 </div>
             </div>

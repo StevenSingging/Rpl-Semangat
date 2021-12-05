@@ -12,4 +12,7 @@ class PengajuanSurat extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    public function js(){
+        return $this->belongsTo(JenisSurat::class);
+    }
 }

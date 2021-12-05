@@ -39,7 +39,7 @@ Route::get('/mahasiswa/pengajuansuratmhs', '\App\Http\Controllers\MahasiswaContr
 Route::get('/mahasiswa/viewsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@viewsuratmhs')->name('viewsuratmhs');
 Route::get('/mahasiswa/tambahsuratmhs', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
 //Route::get('/mahasiswa/tambahsuratmhs/', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
-Route::post('/mahasiswa/simpansuratmhs', '\App\Http\Controllers\MahasiswaController@simpansuratmhs')->name('simpansuratmhs');
+Route::post('/mahasiswa/simpansurattugasmhs', '\App\Http\Controllers\MahasiswaController@simpansurattugasmhs')->name('simpansurattugasmhs');
 Route::get('/mahasiswa/editsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsuratmhs')->name('editsuratmhs');
 Route::post('/mahasiswa/updatesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratmhs')->name('updatesuratmhs');
 Route::get('/mahasiswa/deletesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@deletesuratmhs')->name('deletesuratmhs');
