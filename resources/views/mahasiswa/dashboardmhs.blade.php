@@ -25,39 +25,39 @@
             <div class="col-sm-4 col-6">
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3></h3>
+                        <h3>{{$countstp}}</h3>
                         <p>Surat Tugas Pribadi</p>
                     </div>
                 <div class="icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                    <a href="{{route('surattugasmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{route('arsipstpmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
             <div class="col-sm-4 col-6">
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3></h3>
+                        <h3>{{$countstk}}</h3>
                         <p>Surat Tugas Kelompok</p>
                     </div>
                 <div class="icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                    <a href="{{route('surattugasmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{route('arsipstkmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
             <div class="col-sm-4 col-6">
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3></h3>
+                        <h3>{{$countskm}}</h3>
                         <p>Surat Kegiatan Mahasiswa</p>
                     </div>
                 <div class="icon">
                     <i class="fas fa-envelope"></i>
                 </div>
-                    <a href="{{route('suratkegiatanmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="{{route('arsipskmmhs')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 @endsection

@@ -23,7 +23,7 @@
             <form action="{{route('simpansurattugasmhs')}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal</label>
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Kegiatan</label>
                                 <div class="col-sm-10">
                                     <input type="date" id="inputPassword" name="tanggal" style=width:180px class="form-control
                                     @error('tanggal') is-invalid @enderror" value="{{old('tanggal')}}">
@@ -98,7 +98,7 @@
                         </div>
                 <div class="mahasiswa"></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    <a class="btn btn-secondary" role="button" href="{{ route('pengajuansuratmhs') }}">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

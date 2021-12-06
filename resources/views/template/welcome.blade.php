@@ -77,21 +77,10 @@
             @endif
             @if(auth()->user()->level == "admin")
             <li class="nav-item">
-                <a href="{{route('tambahsuratadm')}}" class="nav-link">
-                <i class="nav-icon fas fa-envelope"></i>
-                <p>
-                    Buat Surat
-                    <i class="right fas fa-angle-right"></i>
-                </p>
-                </a>
-            </li>
-            @endif
-            @if(auth()->user()->level == "admin")
-            <li class="nav-item">
                 <a href="{{route('pengajuansuratadm')}}" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
-                    Surat Permohonan
+                    Surat Masuk
                     <i class="right fas fa-angle-right"></i>
                 </p>
                 </a>
@@ -99,7 +88,7 @@
             @endif
             @if(auth()->user()->level == "admin")
             <li class="nav-item">
-                <a href="{{route('kirimsuratadm')}}" class="nav-link">
+                <a href="{{route('suratkeluaradm')}}" class="nav-link">
                 <i class="nav-icon fas fa-envelope"></i>
                 <p>
                     Surat Keluar

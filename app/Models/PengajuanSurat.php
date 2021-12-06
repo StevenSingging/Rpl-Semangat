@@ -13,6 +13,9 @@ class PengajuanSurat extends Model
         return $this->belongsTo(User::class);
     }
     public function js(){
-        return $this->belongsTo(JenisSurat::class);
+        return $this->belongsTo(JenisSurat::class, 'jenis_id', 'id');
+    }
+    public function pj(){
+        return $this->belongsTo(Pejabat::class, 'pejabat_id', 'id');
     }
 }

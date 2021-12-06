@@ -11,22 +11,29 @@ class MahasiswaController extends Controller
 {
     //Dashboard Mahasiswa
     public function index(){
-        return view('mahasiswa.dashboardmhs');
+        $countstp = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('ni_ang',null)
+        ->where('status','1')
+        ->count();
+        $countstk = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        $countskm = PengajuanSurat::where('jenis_id','2')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        return view('mahasiswa.dashboardmhs',compact('countstp','countstk','countskm'));
     }
 
     //Tampilan Surat Mahasiswa
     public function pengajuansuratmhs(){
         $psurat = PengajuanSurat::paginate();
-        $jsurat = JenisSurat::paginate();
         //return $psurat;
-        return view('mahasiswa.pengajuansuratmhs',compact('psurat','jsurat'));
+        return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
 
-    //Tampilan Seluruh Surat Mahasiswa
-    public function suratmasukmhs(){
-        $psurat = PengajuanSurat::all();
-        return view('mahasiswa.suratmasukmhs',compact('psurat'));
-    }
     //CRUD Surat Mahasiswa
     public function surattugasmhs(){
         return view('mahasiswa.surattugasmhs');
@@ -69,6 +76,14 @@ class MahasiswaController extends Controller
         return redirect('mahasiswa/pengajuansuratmhs');
     }
 
+    public function simpansuratkegiatanmhs(Request $request){
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 2
+        ]);
+        return redirect('mahasiswa/pengajuansuratmhs');
+    }
+
     public function viewsuratmhs($id) {
         $psurat = PengajuanSurat::findorfail($id);
         return view('mahasiswa.detailpsmhs',compact('psurat'));
@@ -92,10 +107,39 @@ class MahasiswaController extends Controller
         return back();
     }
 
+    public function arsipstpmhs(){
+        $psurat = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('ni_ang',null)
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('mahasiswa.arsipstpmhs',compact('psurat'));
+    }
+
+    public function arsipstkmhs(){
+        $psurat = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->whereNotNull('ni_ang')
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('mahasiswa.arsipstkmhs',compact('psurat'));
+    }
+
+    public function arsipskmmhs(){
+        $psurat = PengajuanSurat::where('jenis_id','2')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('mahasiswa.arsipskmmhs',compact('psurat'));
+    }
+
     //Cari Surat
     public function searchmhs(Request $request) {
         $cari = $request->key;
-        $psurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")
+        $psurat = PengajuanSurat::where('jenis_surat','like',"%".$cari."%")
         ->paginate();
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }

@@ -10,6 +10,6 @@ class Pejabat extends Model
     use HasFactory;
     protected $guarded = ['id'];
     public function pj(){
-        return $this->hasMany(PengajuanSurat::class);
+        return $this->hasMany(PengajuanSurat::class,'id');
     }
 }

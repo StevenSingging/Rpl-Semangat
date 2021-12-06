@@ -23,12 +23,24 @@
             <nav class="navbar navbar-light bg-light">
                 <h1>Detail Pengajuan Surat</h1>
             </nav><br>
-            <p>NIM : {{$psurat->user->niuser}}</p>
-            <p>Nama : {{$psurat->user->name}}</p>
-            <p>Tanggal : {{$psurat->tanggal}}</p>
-            <p>Tujuan Surat : {{$psurat->tujuan_surat}}</p>
-            <p>Nama Mitra : {{$psurat->nama_mitra}}</p>
-            <p>Alamat Mitra : {{$psurat->alamat_mitra}}</p>
-            <p>Keterangan : {{$psurat->keterangan}}</p>
-            <p>Status : {{ ($psurat->status == 0) ? 'Sedang diproses' : 'Diterima'}}</p>
+                @if($psurat->jenis_id == 2)
+                <p>Tanggal Pengajuan : {{date('d-m-Y', strtotime($psurat->created_at))}}</p>
+                <p>Program Studi : {{$psurat->user->prodi}}</p>
+                <p>Semester : {{$psurat->user->semester}}</p>
+                @endif
+                <p>NIM : {{$psurat->user->niuser}}</p>
+                <p>Nama : {{$psurat->user->name}}</p>
+                @if($psurat->jenis_id == 4)
+                <p>Tanggal Kegiatan : {{date('d-m-Y', strtotime($psurat->tanggal))}}</p>
+                <p>Sebagai : {{$psurat->sebagai}}</p>
+                <p>Mitra Kegiatan : {{$psurat->nama_mitra}}</p>
+                <p>Tema Kegiatan : {{$psurat->tema}}</p>
+                <p>Keterangan Kegiatan : {{$psurat->keterangan}}</p>
+                <p>Lokasi Kegiatan : {{$psurat->lokasi}}</p>
+                @if($psurat->ni_ang != null)
+                <p>NI Anggota : {{$psurat->ni_ang}}</p>
+                <p>Nama Anggota : {{$psurat->nama_ang}}</p>
+                @endif
+                @endif
+                <p>Status : {{ ($psurat->status == 0) ? 'Sedang diproses' : 'Validasi'}}</p>
 @endsection
