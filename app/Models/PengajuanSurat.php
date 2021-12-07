@@ -14,6 +14,7 @@ class PengajuanSurat extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
     public function js(){
+<<<<<<< HEAD
         return $this->belongsTo(JenisSurat::class,'jenis_id','id');
     }
     public function pj(){
@@ -21,5 +22,11 @@ class PengajuanSurat extends Model
     }
     public function alldata(){
         return DB::table('pengajuansurats')->get()->first();
+=======
+        return $this->belongsTo(JenisSurat::class, 'jenis_id', 'id');
+    }
+    public function pj(){
+        return $this->belongsTo(Pejabat::class, 'pejabat_id', 'id');
+>>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
     }
 }

@@ -39,13 +39,16 @@ Route::get('/mahasiswa/suratkegiatanmhs', '\App\Http\Controllers\MahasiswaContro
 Route::get('/mahasiswa/surattugasmhs', '\App\Http\Controllers\MahasiswaController@surattugasmhs')->name('surattugasmhs');
 Route::post('/mahasiswa/simpansurattugasmhs', '\App\Http\Controllers\MahasiswaController@simpansurattugasmhs')->name('simpansurattugasmhs');
 Route::post('/mahasiswa/simpansuratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@simpansuratkegiatanmhs')->name('simpansuratkegiatanmhs');
+
 Route::get('/mahasiswa/editsurattgsmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsurattgsmhs')->name('editsurattgsmhs');
+
 Route::post('/mahasiswa/updatesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratmhs')->name('updatesuratmhs');
 Route::get('/mahasiswa/deletesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@deletesuratmhs')->name('deletesuratmhs');
 Route::get('/mahasiswa/arsipstpmhs/', '\App\Http\Controllers\MahasiswaController@arsipstpmhs')->name('arsipstpmhs');
 Route::get('/mahasiswa/arsipstkmhs/', '\App\Http\Controllers\MahasiswaController@arsipstkmhs')->name('arsipstkmhs');
 Route::get('/mahasiswa/arsipskmmhs/', '\App\Http\Controllers\MahasiswaController@arsipskmmhs')->name('arsipskmmhs');
 Route::get('/mahasiswa/cetakpstpmhs/{id}', '\App\Http\Controllers\MahasiswaController@downloadsurattgsp')->name('downloadstp');
+
 //Mencari Surat Mahasiswa
 Route::get('/mahasiswa/searchmhs','\App\Http\Controllers\MahasiswaController@searchmhs')->name('searchmhs');
 

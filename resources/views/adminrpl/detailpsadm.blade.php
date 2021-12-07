@@ -26,6 +26,7 @@
                 @if($asurat->jenis_id == 2)
                 <p>Tanggal Pengajuan : {{date('d-m-Y', strtotime($asurat->created_at))}}</p>
                 <p>Program Studi : {{$asurat->user->prodi}}</p>
+<<<<<<< HEAD
                 @if($asurat->user->level == 'mahasiswa')
                 <p>Semester : {{$asurat->user->semester}}</p>
                 @endif
@@ -33,6 +34,10 @@
                 <p>Jabatan : {{$asurat->user->level}}</p>
                 @endif
                 @endif
+=======
+                <p>Semester : {{$asurat->user->semester}}</p>
+                @endif
+>>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
                 <p>Pengirim : {{$asurat->user->niuser}} - {{$asurat->user->name}}</p>
                 @if($asurat->jenis_id == 4)
                 <p>Tanggal Kegiatan : {{date('d-m-Y', strtotime($asurat->tanggal))}}</p>
@@ -47,4 +52,8 @@
                 @endif
                 @endif
                 <p>Status : {{ ($asurat->status == 0) ? 'Sedang diproses' : 'Validasi'}}</p>
+<<<<<<< HEAD
 @endsection
+=======
+@endsection
+>>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7

@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title>Surat Tugas Kelompok</title>
+<title>Surat Kegiatan Mahasiswa</title>
 @section('content')
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -14,7 +14,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Beranda</a></li>
-              <li class="breadcrumb-item active">Surat Tugas Kelompok</li>
+              <li class="breadcrumb-item active">Surat Kegiatan Mahasiswa</li>
             </ol>
           </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="card">
               <div class="card-body">
                 <nav class="navbar navbar-light bg-light">
-                    <h1>Surat Tugas Kelompok</h1>
+                    <h1>Surat Kegiatan Mahasiswa</h1>
                 </nav>
 
                 <table id="example2" class="table table-bordered table-hover">
@@ -77,8 +77,4 @@
                 {{ $psurat->links() }}
               </div>
             </div>
-<<<<<<< HEAD
             @endsection
-=======
-            @endsection
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7

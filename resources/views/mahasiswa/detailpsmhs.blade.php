@@ -43,4 +43,6 @@
                 @endif
                 @endif
                 <p>Status : {{ ($psurat->status == 0) ? 'Sedang diproses' : 'Validasi'}}</p>
+
 @endsection
+

@@ -19,7 +19,9 @@ class MahasiswaController extends Controller
         $countstk = PengajuanSurat::where('jenis_id','4')
         ->where('validasi','1')
         ->where('status','1')
+
         ->whereNotNull('ni_ang')
+
         ->count();
         $countskm = PengajuanSurat::where('jenis_id','2')
         ->where('validasi','1')
@@ -138,7 +140,9 @@ class MahasiswaController extends Controller
         ->where('status','1')
         ->paginate();
         //return $psurat;
+
         return view('mahasiswa.arsipkmmhs',compact('psurat'));
+
     }
 
     //Cari Surat

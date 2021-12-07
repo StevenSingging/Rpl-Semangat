@@ -37,13 +37,17 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Program Studi</label>
                                 <div class="col-sm-10">
+
                                     <input type="text" id="inputPassword" style=width:200px name="prodi" class="form-control" placeholder="{{ Auth::user()->prodi }}" readonly>
+
                                 </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Semester</label>
                                 <div class="col-sm-10">
+
                                     <input type="text" id="inputPassword" style=width:200px name="semester" class="form-control" placeholder="{{ Auth::user()->semester }}" readonly>
+
                                 </div>
                         </div>
                 <div class="modal-footer">
@@ -51,4 +55,4 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-@endsection
+

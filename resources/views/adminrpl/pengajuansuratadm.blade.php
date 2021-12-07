@@ -96,6 +96,39 @@
                 Halaman : {{ $asurat->currentPage() }}<br>
                 {{ $asurat->links() }}
               </div>
+<<<<<<< HEAD
+=======
+            </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Buat Surat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pilih Surat
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="">Surat Personalia & SK</a>
+                            <a class="dropdown-item" href="">Surat Keterangan Kegiatan</a>
+                            <a class="dropdown-item" href="">Surat Undangan & Daftar Hadir Kegiatan</a>
+                            <a class="dropdown-item" href="">Surat Tugas & DP3</a>
+                            <a class="dropdown-item" href="">Berita Acara Kegiatan</a>
+                        </div>
+                        </div>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                </div>
+                </div>
+>>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
             </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -127,5 +160,9 @@
                 </div>
                 </div>
             </div>
+<<<<<<< HEAD
             </div>
             @endsection
+=======
+            @endsection
+>>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7

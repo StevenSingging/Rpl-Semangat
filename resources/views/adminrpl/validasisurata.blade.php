@@ -20,7 +20,7 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{url('/adminrpl/updatevalidasisuratadm',$asurat->id)}}" method="post">
+            <form action="{{url('/adminrpl/updatesuratadm',$asurat->id)}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">NIM</label>
@@ -40,34 +40,17 @@
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->prodi }}" readonly>
                                 </div>
                         </div>
-
-                        @if($asurat->user->level == 'dosen')
-                        <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Jabatan</label>
-                                <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->level }}" readonly>
-                                </div>
-                        </div>
-                        @endif
-                        @if($asurat->user->level == 'mahasiswa')
-
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Semester</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->semester }}" readonly>
                                 </div>
                         </div>
-
-                        @endif
-
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->js->kode_surat }}" readonly>
                                 </div>
-                        </div>
-                        <div class="col-2">
-                            <input type="hidden" class="form-control" style=width:150px id="inputPassword" readonly name="validasi" value="1">
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">TTD</label>
@@ -84,7 +67,4 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-
 @endsection
-
-
