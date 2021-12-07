@@ -34,7 +34,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="{{route('skdekanadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -42,14 +42,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3></h3>
+                <h3>{{$countstp}}</h3>
 
                 <p>Surat Kegiatan Mahasiswa</p>
               </div>
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="{{route('suratketmhsadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -64,7 +64,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="{{route('suratundanganadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -79,7 +79,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="{{route('surattugasadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -94,7 +94,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="{{route('beritaacaraadm')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 @endsection

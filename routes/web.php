@@ -30,20 +30,22 @@ Route::get('/logout','\App\Http\Controllers\LoginController@logout')->name('logo
 
 //});
 //Dashboard Mahasiswa
-Route::get('/mahasiswa/suratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@suratkegiatanmhs')->name('suratkegiatanmhs');
-Route::get('/mahasiswa/surattugasmhs', '\App\Http\Controllers\MahasiswaController@surattugasmhs')->name('surattugasmhs');
 Route::get('/mahasiswa/suratmasukmhs', '\App\Http\Controllers\MahasiswaController@suratmasukmhs')->name('suratmasukmhs');
 
 //CRUD Surat Mahasiswa
 Route::get('/mahasiswa/pengajuansuratmhs', '\App\Http\Controllers\MahasiswaController@pengajuansuratmhs')->name('pengajuansuratmhs');
 Route::get('/mahasiswa/viewsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@viewsuratmhs')->name('viewsuratmhs');
-Route::get('/mahasiswa/tambahsuratmhs', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
-//Route::get('/mahasiswa/tambahsuratmhs/', '\App\Http\Controllers\MahasiswaController@tambahsuratmhs')->name('tambahsuratmhs');
+Route::get('/mahasiswa/suratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@suratkegiatanmhs')->name('suratkegiatanmhs');
+Route::get('/mahasiswa/surattugasmhs', '\App\Http\Controllers\MahasiswaController@surattugasmhs')->name('surattugasmhs');
 Route::post('/mahasiswa/simpansurattugasmhs', '\App\Http\Controllers\MahasiswaController@simpansurattugasmhs')->name('simpansurattugasmhs');
-Route::get('/mahasiswa/editsuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsuratmhs')->name('editsuratmhs');
+Route::post('/mahasiswa/simpansuratkegiatanmhs', '\App\Http\Controllers\MahasiswaController@simpansuratkegiatanmhs')->name('simpansuratkegiatanmhs');
+Route::get('/mahasiswa/editsurattgsmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsurattgsmhs')->name('editsurattgsmhs');
 Route::post('/mahasiswa/updatesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratmhs')->name('updatesuratmhs');
 Route::get('/mahasiswa/deletesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@deletesuratmhs')->name('deletesuratmhs');
-
+Route::get('/mahasiswa/arsipstpmhs/', '\App\Http\Controllers\MahasiswaController@arsipstpmhs')->name('arsipstpmhs');
+Route::get('/mahasiswa/arsipstkmhs/', '\App\Http\Controllers\MahasiswaController@arsipstkmhs')->name('arsipstkmhs');
+Route::get('/mahasiswa/arsipskmmhs/', '\App\Http\Controllers\MahasiswaController@arsipskmmhs')->name('arsipskmmhs');
+Route::get('/mahasiswa/cetakpstpmhs/{id}', '\App\Http\Controllers\MahasiswaController@downloadsurattgsp')->name('downloadstp');
 //Mencari Surat Mahasiswa
 Route::get('/mahasiswa/searchmhs','\App\Http\Controllers\MahasiswaController@searchmhs')->name('searchmhs');
 
@@ -59,12 +61,22 @@ Route::get('/dosen/suratmasukdsn', '\App\Http\Controllers\DosenController@suratm
 
 //CRUD Surat Dosen
 Route::get('/dosen/pengajuansuratdsn', '\App\Http\Controllers\DosenController@pengajuansuratdsn')->name('pengajuansuratdsn');
+Route::get('/dosen/suratkegiatandsn', '\App\Http\Controllers\DosenController@suratkegiatandsn')->name('suratkegiatandsn');
+Route::get('/dosen/surattugasdsn', '\App\Http\Controllers\DosenController@surattugasdsn')->name('surattugasdsn');
+Route::post('/dosen/simpansurattugasdsn', '\App\Http\Controllers\DosenController@simpansurattugasdsn')->name('simpansurattugasdsn');
+Route::post('/dosen/simpansuratkegiatandsn', '\App\Http\Controllers\DosenController@simpansuratkegiatandsn')->name('simpansuratkegiatandsn');
 Route::get('/dosen/viewsuratdsn/{id}', '\App\Http\Controllers\DosenController@viewsuratdsn')->name('viewsuratdsn');
-Route::get('/dosen/tambahsuratdsn', '\App\Http\Controllers\DosenController@tambahsuratdsn')->name('tambahsuratdsn');
-Route::post('/dosen/simpansuratdsn', '\App\Http\Controllers\DosenController@simpansuratdsn')->name('simpansuratdsn');
-Route::get('/dosen/editsuratdsn/{id}', '\App\Http\Controllers\DosenController@editsuratdsn')->name('editsuratdsn');
+Route::get('/dosen/editsurattgsdsn/{id}', '\App\Http\Controllers\DosenController@editsurattgsdsn')->name('editsurattgsdsn');
 Route::post('/dosen/updatesuratdsn/{id}', '\App\Http\Controllers\DosenController@updatesuratdsn')->name('updatesuratdsn');
 Route::get('/dosen/deletesuratdsn/{id}', '\App\Http\Controllers\DosenController@deletesuratdsn')->name('deletesuratdsn');
+Route::get('/dosen/arsipstpdsn/', '\App\Http\Controllers\DosenController@arsipstpdsn')->name('arsipstpdsn');
+Route::get('/dosen/arsipstkdsn/', '\App\Http\Controllers\DosenController@arsipstkdsn')->name('arsipstkdsn');
+Route::get('/dosen/arsipskmdsn/', '\App\Http\Controllers\DosenController@arsipskmdsn')->name('arsipskmdsn');
+//Route::get('/dosen/tambahsuratdsn', '\App\Http\Controllers\DosenController@tambahsuratdsn')->name('tambahsuratdsn');
+//Route::post('/dosen/simpansuratdsn', '\App\Http\Controllers\DosenController@simpansuratdsn')->name('simpansuratdsn');
+//Route::get('/dosen/editsuratdsn/{id}', '\App\Http\Controllers\DosenController@editsuratdsn')->name('editsuratdsn');
+//Route::post('/dosen/updatesuratdsn/{id}', '\App\Http\Controllers\DosenController@updatesuratdsn')->name('updatesuratdsn');
+//Route::get('/dosen/deletesuratdsn/{id}', '\App\Http\Controllers\DosenController@deletesuratdsn')->name('deletesuratdsn');
 
 //Mencari Surat Dosen
 Route::get('/dosen/searchdsn','\App\Http\Controllers\DosenController@searchdsn')->name('searchdsn');
@@ -75,23 +87,24 @@ Route::group(['middleware' => ['auth','ceklevel:admin']],function(){
 
 });
 //Dashboard Admin
-Route::get('/adminrpl/skdekanadm', '\App\Http\Controllers\AdminController@skdekanadm')->name('skdekanadm');
-Route::get('/adminrpl/suratketmhsadm', '\App\Http\Controllers\AdminController@suratketmhsadm')->name('suratketmhsadm');
-Route::get('/adminrpl/suratundanganadm', '\App\Http\Controllers\AdminController@suratundanganadm')->name('suratundanganadm');
-Route::get('/adminrpl/surattugasadm', '\App\Http\Controllers\AdminController@surattugasadm')->name('surattugasadm');
-Route::get('/adminrpl/beritaacaraadm', '\App\Http\Controllers\AdminController@beritaacaraadm')->name('beritaacaraadm');
-Route::get('/adminrpl/suratkeluaradm', '\App\Http\Controllers\AdminController@suratkeluaradm')->name('suratkeluaradm');
 
 //CRUD Surat Admin
 Route::get('/adminrpl/pengajuansuratadm', '\App\Http\Controllers\AdminController@pengajuansuratadm')->name('pengajuansuratadm');
 Route::get('/adminrpl/viewsuratadm/{id}', '\App\Http\Controllers\AdminController@viewsuratadm')->name('viewsuratadm');
-Route::get('/adminrpl/tambahsuratadm', '\App\Http\Controllers\AdminController@tambahsuratadm')->name('tambahsuratadm');
-Route::post('/adminrpl/simpansuratadm', '\App\Http\Controllers\AdminController@simpansuratadm')->name('simpansuratadm');
-Route::get('/adminrpl/editsuratadm/{id}', '\App\Http\Controllers\AdminController@editsuratadm')->name('editsuratadm');
+Route::get('/adminr pl/editsurata/{id}', '\App\Http\Controllers\AdminController@editsurata')->name('editsurata');
+Route::get('/adminrpl/editsuratb/{id}', '\App\Http\Controllers\AdminController@editsuratb')->name('editsuratb');
+Route::get('/adminrpl/editsuratc/{id}', '\App\Http\Controllers\AdminController@editsuratc')->name('editsuratc');
+Route::get('/adminrpl/editsuratd/{id}', '\App\Http\Controllers\AdminController@editsuratd')->name('editsuratd');
+Route::get('/adminrpl/editsurate/{id}', '\App\Http\Controllers\AdminController@editsurate')->name('editsurate');
 Route::post('/adminrpl/updatesuratadm/{id}', '\App\Http\Controllers\AdminController@updatesuratadm')->name('updatesuratadm');
+Route::post('/adminrpl/updatevalidasisuratadm/{id}', '\App\Http\Controllers\AdminController@updatevalidasisuratadm')->name('updatevalidasisuratadm');
 Route::get('/adminrpl/deletesuratadm/{id}', '\App\Http\Controllers\AdminController@deletesuratadm')->name('deletesuratadm');
-Route::get('/adminrpl/kirimsuratadm', '\App\Http\Controllers\AdminController@kirimsuratadm')->name('kirimsuratadm');
-Route::get('/adminrpl/validasi/{id}', '\App\Http\Controllers\AdminController@validasi')->name('validasi');
+Route::get('/adminrpl/suratkeluaradm', '\App\Http\Controllers\AdminController@suratkeluaradm')->name('suratkeluaradm');
+Route::get('/adminrpl/validasisurata/{id}', '\App\Http\Controllers\AdminController@validasisurata')->name('validasisurata');
+Route::get('/adminrpl/validasisuratb/{id}', '\App\Http\Controllers\AdminController@validasisuratb')->name('validasisuratb');
+Route::get('/adminrpl/validasisuratc/{id}', '\App\Http\Controllers\AdminController@validasisuratc')->name('validasisuratc');
+Route::get('/adminrpl/validasisuratd/{id}', '\App\Http\Controllers\AdminController@validasisuratd')->name('validasisuratd');
+Route::get('/adminrpl/validasisurate/{id}', '\App\Http\Controllers\AdminController@validasisurate')->name('validasisurate');
 
 //Mencari Surat Admin
 Route::get('/adminrpl/searchadm','\App\Http\Controllers\AdminController@searchadm')->name('searchadm');

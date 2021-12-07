@@ -1,9 +1,6 @@
 @extends('template.welcome')
 <title>Pengajuan Surat</title>
 @section('content')
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 <!-- Content Header (Page header) -->
 <div class="content-header">
       <div class="container-fluid">
@@ -53,18 +50,28 @@
                   @foreach($psurat as $psmhs)
                   @if ($psmhs->user_id == Auth::user()->id)
                   <tr align="center">
-                    <th scope="row"><?php echo e($no++) + (($psurat->currentPage()-1) * $psurat->perPage()) ?></th>
+                    <td>{{$loop->iteration}}</td>
                       <td>{{date('d-m-Y', strtotime($psmhs->tanggal))}}</td>
-                      <td>{{$psmhs->js}}</td>
+                      <td>{{$psmhs->js->jenis}}</td>
                       <td>{{$psmhs->keterangan}}</td>
                       <td><badge class="badge {{ ($psmhs->status == 0) ? 'badge-warning' :
                           'badge-success'}}">{{ ($psmhs->status == 0) ? 'Sedang diproses' :
                           'Validasi'}}</badge></td>
                       <td>
-                        @if($psmhs->status == 1)
+                        @if($psmhs->validasi == 1)
+                        @if($psmhs->jenis_id == 4)
+                        <a href="{{url('/mahasiswa/cetakpstpmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
+                        @if($psmhs->jenis_id == 2)
+                        <a href="{{url('/mahasiswa/downloadsksuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
+                        @endif
+                        @if($psmhs->jenis_id == 2)
                         <a href="{{url('/mahasiswa/viewsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @endif
-                        <a href="{{url('/mahasiswa/editsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @if($psmhs->jenis_id == 4)
+                        <a href="{{url('/mahasiswa/editsurattgsmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         <a href="{{url('/mahasiswa/deletesuratmhs',$psmhs->id)}}"
                         onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
                         role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
@@ -74,8 +81,8 @@
                   @endforeach
                   </tbody>
                 </table><br>
-                Halaman : {{ $psurat->currentPage() }}<br>
-                {{ $psurat->links() }}
+                <br>
+                
               </div>
             </div>
 
@@ -93,7 +100,6 @@
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Pilih Surat
                         </a>
-
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" href="{{ route('surattugasmhs') }}">Surat Tugas</a>
                             <a class="dropdown-item" href="{{ route('suratkegiatanmhs') }}">Surat Kegiatan Mahasiswa</a>

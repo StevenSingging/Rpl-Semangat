@@ -16,8 +16,11 @@ class CreatePengajuanSuratsTable extends Migration
         Schema::create('pengajuan_surats', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+           
             $table->unsignedBigInteger('jenis_id');
+            
             $table->unsignedBigInteger('pejabat_id');
+            
             $table->string('nomor_surat');
             $table->date('tanggal');
             $table->string('nama_mitra');
@@ -25,6 +28,8 @@ class CreatePengajuanSuratsTable extends Migration
             $table->string('keterangan');
             $table->string('status');
             $table->string('validasi');
+            $table->string('ni_ang');
+            $table->string('nama_ang');
             $table->timestamps();
         });
     }

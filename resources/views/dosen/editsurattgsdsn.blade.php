@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title>Pengajuan Surat</title>
+<title>Edit Surat Tugas</title>
 @section('content')
 <div class="content-header">
       <div class="container-fluid">
@@ -7,12 +7,12 @@
           <div class="col-sm-6">
             <h1 class="m-0"></h1>
             <nav class="navbar navbar-light bg-light">
-                <h1>Tambah Data Pengajuan Surat</h1>
+                <h1>Edit Surat Tugas</h1>
             </nav>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Beranda</a></li>
 
               <li class="breadcrumb-item active">Tambah Surat</li>
             </ol>
@@ -20,12 +20,12 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{route('simpansurattugasmhs')}}" method="post">
+            <form action="{{url('/dosen/updatesuratdsn',$psurat->id)}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Kegiatan</label>
                                 <div class="col-sm-10">
-                                    <input type="date" id="inputPassword" name="tanggal" style=width:180px class="form-control
+                                    <input type="date" id="inputPassword" value="{{$psurat->tanggal}}" name="tanggal" style=width:180px class="form-control
                                     @error('tanggal') is-invalid @enderror" value="{{old('tanggal')}}">
                                     @error('tanggal')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -35,7 +35,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Sebagai</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" name="sebagai" class="form-control
+                                    <input type="text" id="inputPassword" value="{{$psurat->sebagai}}" name="sebagai" class="form-control
                                     @error('sebagai') is-invalid @enderror" value="{{old('sebagai')}}">
                                     @error('sebagai')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -45,7 +45,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Mitra Kegiatan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" name="nama_mitra" class="form-control
+                                    <input type="text" id="inputPassword" value="{{$psurat->nama_mitra}}" name="nama_mitra" class="form-control
                                     @error('nama_mitra') is-invalid @enderror" value="{{old('nama_mitra')}}">
                                     @error('nama_mitra')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -55,7 +55,7 @@
                         <div class="form-group row">
                             <label for="exampleFormControlTextArea1" class="col-sm-2 col-form-label">Tema Kegiatan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" name="tema" class="form-control
+                                    <input type="text" id="inputPassword" value="{{$psurat->tema}}" name="tema" class="form-control
                                     @error('tema') is-invalid @enderror" value="{{old('tema')}}">
                                     @error('tema')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -65,7 +65,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Keterangan Kegiatan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" name="keterangan" class="form-control
+                                    <input type="text" id="inputPassword" value="{{$psurat->keterangan}}" name="keterangan" class="form-control
                                     @error('keterangan') is-invalid @enderror" value="{{old('keterangan')}}">
                                     @error('keterangan')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -75,7 +75,7 @@
                         <div class="form-group row">
                             <label for="exampleFormControlTextArea1" class="col-sm-2 col-form-label">Lokasi Kegiatan</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" name="lokasi" class="form-control
+                                    <input type="text" id="inputPassword" value="{{$psurat->lokasi}}" name="lokasi" class="form-control
                                     @error('lokasi') is-invalid @enderror" value="{{old('lokasi')}}">
                                     @error('lokasi')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -86,11 +86,11 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tambah Anggota</label>
                             <div class="col-2">
                                 <div class="input-field">
-                                <input type="text" class="form-control" id="inputPassword" name="ni_ang[]" placeholder="NIM">
+                                <input type="text" class="form-control" id="inputPassword" value="{{$psurat->ni_ang}}" name="ni_ang[]" placeholder="NIM">
                             </div>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control" id="inputPassword" name="nama_ang[]" placeholder="Nama">
+                                <input type="text" class="form-control" id="inputPassword" value="{{$psurat->nama_ang}}" name="nama_ang[]" placeholder="Nama">
                             </div>
                             <div class="col-4">
                                 <button class="add-more btn btn-success " type="button"><i class="glyphicon glyphicon-plus"></i> Tambah

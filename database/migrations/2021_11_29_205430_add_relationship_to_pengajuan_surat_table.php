@@ -14,9 +14,9 @@ class AddRelationshipToPengajuanSuratTable extends Migration
     public function up()
     {
         Schema::table('pengajuan_surats', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('jenis_id')->references('id')->on('jenis_surats')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('pejabat_id')->references('id')->on('pejabats')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->nullable();
+            $table->foreign('jenis_id')->references('id')->on('jenis_surats')->nullable();
+            $table->foreign('pejabat_id')->references('id')->on('pejabats')->nullable();
         });
     }
 
@@ -25,12 +25,12 @@ class AddRelationshipToPengajuanSuratTable extends Migration
      *
      * @return void
      */
-    public function down()
+    /*public function down()
     {
         Schema::table('pengajuan_surats', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropForeign(['jenis_id']);
             $table->dropForeign(['pejabat_id']);
         });
-    }
+    }*/
 }

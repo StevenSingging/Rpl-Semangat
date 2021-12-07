@@ -1,9 +1,6 @@
 @extends('template.welcome')
 <title>Pengajuan Surat</title>
 @section('content')
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 <!-- Content Header (Page header) -->
 <div class="content-header">
       <div class="container-fluid">
@@ -31,38 +28,51 @@
                 </nav>
                 <nav class="navbar navbar-light">
                 <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal">Tambah Data</a>
-                    <form method="GET" action="{{ route('searchdsn') }}">
+                    <form method="GET" action="{{ route('searchmhs') }}">
                         <input name="key" value="@php echo old('cari') @endphp" placeholder="Search">
                         <button class="btn btn-dark" type="submit">Search</button>
                     </form>
                 </nav>
+
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
-                  <tr>
+                  <tr align="center">
                     <th>No</th>
-                    <th>Tanggal</th>
+                    <th>Tanggal Pengajuan</th>
                     <th>Jenis Surat</th>
                     <th>Keterangan</th>
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
                   @php $no=1; @endphp
-                  @foreach($dsurat as $dsdsn)
-                  @if ($dsdsn->niuser == Auth::user()->niuser)
+                  @foreach($dsurat as $psdsn)
+                  @if ($psdsn->user_id == Auth::user()->id)
                   <tr align="center">
-                    <th scope="row"><?php echo e($no++) + (($dsurat->currentPage()-1) * $dsurat->perPage()) ?></th>
-                      <td>{{date('d-m-Y', strtotime($dsdsn->tanggal))}}</td>
-                      <td>{{$dsdsn->tujuan_surat}}</td>
-                      <td>{{$dsdsn->keterangan}}</td>
-                      <td><badge class="badge {{ ($dsdsn->status == 0) ? 'badge-warning' :
-                          'badge-success'}}">{{ ($dsdsn->status == 0) ? 'Sedang diproses' :
-                          'Diterima'}}</badge></td>
-                      <td align="center">
-                        <a href="{{url('/dosen/viewsuratdsn',$dsdsn->id)}}" role="button"><i class="fas fa-eye"></i></a> |
-                        <a href="{{url('/dosen/editsuratdsn',$dsdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
-                        <a href="{{url('/dosen/deletesuratdsn',$dsdsn->id)}}"
+                      <td>{{$loop->iteration}}</td>
+                      <td>{{date('d-m-Y', strtotime($psdsn->tanggal))}}</td>
+                      <td>{{$psdsn->js->jenis}}</td>
+                      <td>{{$psdsn->keterangan}}</td>
+                      <td><badge class="badge {{ ($psdsn->status == 0) ? 'badge-warning' :
+                          'badge-success'}}">{{ ($psdsn->status == 0) ? 'Sedang diproses' :
+                          'Validasi'}}</badge></td>
+                      <td>
+                        @if($psdsn->validasi == 1)
+                        @if($psdsn->jenis_id == 4)
+                        <a href="{{url('/dosen/downloadtgssuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
+                        @if($psdsn->jenis_id == 2)
+                        <a href="{{url('/dosen/downloadsksuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
+                        @endif
+                        @if($psdsn->jenis_id == 2)
+                        <a href="{{url('/dosen/viewsuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-eye"></i></a> |
+                        @endif
+                        @if($psdsn->jenis_id == 4)
+                        <a href="{{url('/dosen/editsurattgsdsn',$psdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        <a href="{{url('/dosen/deletesuratdsn',$psdsn->id)}}"
                         onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
                         role="button"><i class="fas fa-user-minus" style="color : red"></i></a>
                         </td>
@@ -71,12 +81,11 @@
                   @endforeach
                   </tbody>
                 </table><br>
-                Halaman : {{ $dsurat->currentPage() }}<br>
-                {{ $dsurat->links() }}
+                <br>
+                
               </div>
-              <!-- /.card-body -->
             </div>
-            <!-- /.card -->
+
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -86,16 +95,18 @@
                     <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div  class="modal-body" >
-                    <div class="dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilih Surat</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <a class="dropdown-item" href="{{route('buatsuratket')}}">Surat keterangan</a>
-                    <a class="dropdown-item" href="{{route('buatsurattgs')}}">Surat Tugas</a>
-                  </div>
+                <div class="modal-body">
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Pilih Surat
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" href="{{route('surattugasdsn')}}">Surat Tugas</a>
+                            <a class="dropdown-item" href="{{route('suratkegiatandsn')}}">Surat Kegiatan Mahasiswa</a>
+                            <a class="dropdown-item" href="">Berita Acara</a>
+                        </div>
+                        </div>
                     </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
                 </div>

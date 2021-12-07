@@ -10,78 +10,141 @@ class DosenController extends Controller
 {
     //Dashboard Dosen
     public function index(){
-        return view('dosen.dashboarddsn');
+        $countstp = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('ni_ang',null)
+        ->where('status','1')
+        ->count();
+        $countstk = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        $countskm = PengajuanSurat::where('jenis_id','2')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        return view('dosen.dashboarddsn',compact('countstp','countstk','countskm'));
     }
 
-    public function surattugasdsn(){
-        return view('dosen.surattugasdsn');
-    }
-    public function skdekan(){
-        return view('dosen.skdekan');
-    }
-
-    //Tampilan Surat Dosen
     public function pengajuansuratdsn(){
-        $dsurat = PengajuanSurat::paginate(5);
+        $dsurat = PengajuanSurat::paginate();
+        //return $psurat;
         return view('dosen.pengajuansuratdsn',compact('dsurat'));
     }
 
-    public function suratmasukdsn(){
-        $dsurat = PengajuanSurat::paginate(5);
-        return view('dosen.suratmasukdsn',compact('dsurat'));
+    //CRUD Surat Mahasiswa
+    public function surattugasdsn(){
+        return view('dosen.surattugasdsn');
+    }
+    public function suratkegiatandsn(){
+        return view('dosen.suratkegiatandsn');
     }
 
-    //CRUD Surat Dosen
-
-    public function tambahsuratdsn() {
-        return view('dosen.tambahsuratdsn');
-    }
-
-    public function simpansuratdsn(Request $request){
-        //dd($request->all());
-        PengajuanSurat::create([
-            'niuser' => $request -> niuser,
-            'name' => $request -> name,
-            'tanggal' => $request -> tanggal,
-            'tujuan_surat' => $request -> tujuan_surat,
-            'nama_mitra' => $request -> nama_mitra,
-            'alamat_mitra' => $request -> alamat_mitra,
-            'keterangan' => $request -> keterangan
+    public function simpansurattugasdsn(Request $request){
+        $request->validate([
+            'tanggal' => 'required',
+            'sebagai' => 'required',
+            'nama_mitra' => 'required',
+            'tema' => 'required',
+            'keterangan' => 'required',
+            'lokasi' => 'required',
+        ], [
+            'tanggal.required' => 'Tanggal tidak boleh kosong',
+            'sebagai.required' => 'Sebagai tidak boleh kosong',
+            'nama_mitra.required' => 'Mitra Kegiatan tidak boleh kosong',
+            'tema.required' => 'Tema Kegiatan tidak boleh kosong',
+            'keterangan.required' => 'Keterangan Kegiatan tidak boleh kosong',
+            'lokasi.required' => 'Lokasi Kegiatan tidak boleh kosong',
         ]);
-    return redirect('dosen/pengajuansuratdsn');
+        //return $request;
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 4,
+            'tanggal' => $request -> tanggal,
+            'sebagai' => $request -> sebagai,
+            'nama_mitra' => $request -> nama_mitra,
+            'tema' => $request -> tema,
+            'keterangan' => $request -> keterangan,
+            'lokasi' => $request -> lokasi,
+            'ni_ang' => $niang,
+            'nama_ang' => $nmang
+        ]);
+        // User::create([
+        //     'prodi' => $request -> prodi,
+        //     'semester' => $request -> semester
+        // ]);
+        return redirect('dosen/pengajuansuratdsn');
+    }
+
+    public function simpansuratkegiatandsn(Request $request){
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 2
+        ]);
+        return redirect('dosen/pengajuansuratdsn');
     }
 
     public function viewsuratdsn($id) {
-        $dsurat = PengajuanSurat::findorfail($id);
-        return view('dosen.detailpsdsn',compact('dsurat'));
+        $psurat = PengajuanSurat::findorfail($id);
+        return view('dosen.detailpsdsn',compact('psurat'));
     }
 
-    public function editsuratdsn($id) {
-        $dsurat = PengajuanSurat::findorfail($id);
-        return view('dosen.editsuratdsn',compact('dsurat'));
+    public function editsurattgsdsn($id) {
+        $psurat = PengajuanSurat::findorfail($id);
+        return view('dosen.editsurattgsdsn',compact('psurat'));
     }
 
     public function updatesuratdsn(Request $request,$id_per) {
-        $dsurat = PengajuanSurat::findorfail($id_per);
-        $dsurat->update($request->all());
+        $psurat = PengajuanSurat::findorfail($id_per);
+        $psurat->update($request->all());
         return redirect('/dosen/pengajuansuratdsn')->with('toast_success','Data Berhasil Update');
     }
 
 
     public function deletesuratdsn($id) {
-        $dsurat = PengajuanSurat::findorfail($id);
-        $dsurat->delete();
+        $psurat = PengajuanSurat::findorfail($id);
+        $psurat->delete();
         return back();
+    }
+
+    public function arsipstpdsn(){
+        $psurat = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->where('ni_ang',null)
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('dosen.arsiptpdsn',compact('psurat'));
+    }
+
+    public function arsipstkdsn(){
+        $psurat = PengajuanSurat::where('jenis_id','4')
+        ->where('validasi','1')
+        ->whereNotNull('ni_ang')
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('dosen.arsiptkdsn',compact('psurat'));
+    }
+
+    public function arsipskmdsn(){
+        $psurat = PengajuanSurat::where('jenis_id','2')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->paginate();
+        //return $psurat;
+        return view('dosen.arsipskmdsn',compact('psurat'));
     }
 
     //Cari Surat
     public function searchdsn(Request $request) {
         $cari = $request->key;
-        $dsurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")
-        ->where('niuser','301')
-        ->where('status',null)
+        $psurat = PengajuanSurat::where('jenis_surat','like',"%".$cari."%")
         ->paginate();
-        return view('dosen.pengajuansuratdsn',compact('dsurat'));
+        return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
+
 }
 

@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title> Detail Surat</title>
+<title> Edit Surat</title>
 @section('content')
 <!-- Content Header (Page header) -->
 <div class="content-header">
@@ -10,7 +10,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('dosen')}}">Beranda</a></li>
+              <li class="breadcrumb-item"><a href="{{route('mahasiswa')}}">Home</a></li>
               <li class="breadcrumb-item active">Detail Surat</li>
             </ol>
           </div><!-- /.col -->
@@ -23,12 +23,24 @@
             <nav class="navbar navbar-light bg-light">
                 <h1>Detail Pengajuan Surat</h1>
             </nav><br>
-            <p>NID : {{$dsurat->niuser}}</p>
-            <p>Nama : {{auth()->user()->name}}</p>
-            <p>Tanggal : {{$dsurat->tanggal}}</p>
-            <p>Tujuan Surat : {{$dsurat->tujuan_surat}}</p>
-            <p>Nama Mitra : {{$dsurat->nama_mitra}}</p>
-            <p>Alamat Mitra : {{$dsurat->alamat_mitra}}</p>
-            <p>Keterangan : {{$dsurat->keterangan}}</p>
-            <p>Status : {{ ($dsurat->status == 0) ? 'Sedang diproses' : 'Diterima'}}</p>
+                @if($psurat->jenis_id == 2)
+                <p>Tanggal Pengajuan : {{date('d-m-Y', strtotime($psurat->created_at))}}</p>
+                <p>Program Studi : {{$psurat->user->prodi}}</p>
+                <p>Jabatan : {{$psurat->user->level}}</p>
+                @endif
+                <p>NIK : {{$psurat->user->niuser}}</p>
+                <p>Nama : {{$psurat->user->name}}</p>
+                @if($psurat->jenis_id == 4)
+                <p>Tanggal Kegiatan : {{date('d-m-Y', strtotime($psurat->tanggal))}}</p>
+                <p>Sebagai : {{$psurat->sebagai}}</p>
+                <p>Mitra Kegiatan : {{$psurat->nama_mitra}}</p>
+                <p>Tema Kegiatan : {{$psurat->tema}}</p>
+                <p>Keterangan Kegiatan : {{$psurat->keterangan}}</p>
+                <p>Lokasi Kegiatan : {{$psurat->lokasi}}</p>
+                @if($psurat->ni_ang != null)
+                <p>NI Anggota : {{$psurat->ni_ang}}</p>
+                <p>Nama Anggota : {{$psurat->nama_ang}}</p>
+                @endif
+                @endif
+                <p>Status : {{ ($psurat->status == 0) ? 'Sedang diproses' : 'Validasi'}}</p>
 @endsection
