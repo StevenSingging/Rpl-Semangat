@@ -34,18 +34,13 @@
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->name }}" readonly>
                                 </div>
                         </div>
-<<<<<<< HEAD
-                        
-=======
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Program Studi</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->prodi }}" readonly>
                                 </div>
                         </div>
-<<<<<<< HEAD
-      
+   
                         @if($asurat->user->level == 'dosen')
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Jabatan</label>
@@ -55,18 +50,16 @@
                         </div>
                         @endif
                         @if($asurat->user->level == 'mahasiswa')
-=======
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
+
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Semester</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="inputPassword" style=width:200px class="form-control" placeholder="{{ $asurat->user->semester }}" readonly>
                                 </div>
                         </div>
-<<<<<<< HEAD
+
                         @endif
-=======
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
+
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-10">
@@ -93,8 +86,7 @@
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
-<<<<<<< HEAD
+
 @endsection
-=======
-@endsection
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
+
+

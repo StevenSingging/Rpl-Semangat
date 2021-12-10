@@ -69,6 +69,9 @@
                         <div class="col-2">
                             <input type="hidden" class="form-control" style=width:150px id="inputPassword" readonly name="validasi" value="1">
                         </div>
+                        <div class="col-2">
+                            <input type="hidden" class="form-control" style=width:150px id="inputPassword" readonly name="nomor_surat" value="{{$asurat->id}}/{{$asurat->js->kode_surat}}/FTI/{{date('Y', strtotime($asurat->created_at))}}">
+                        </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">TTD</label>
                         <div class="col-sm-10">

@@ -12,35 +12,46 @@ class DosenController extends Controller
     public function index(){
         $countstp = PengajuanSurat::where('jenis_id','4')
         ->where('validasi','1')
-        ->where('ni_ang',null)
+        ->whereNull('ni_ang')
+        ->where('user_id',Auth()->user()->id)
         ->where('status','1')
         ->count();
         $countstk = PengajuanSurat::where('jenis_id','4')
         ->where('validasi','1')
         ->where('status','1')
+        ->where('user_id',Auth()->user()->id)
         ->count();
         $countskm = PengajuanSurat::where('jenis_id','2')
         ->where('validasi','1')
         ->where('status','1')
+        ->where('user_id',Auth()->user()->id)
         ->count();
-        return view('dosen.dashboarddsn',compact('countstp','countstk','countskm'));
+        $countbc = PengajuanSurat::where('jenis_id','5')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->where('user_id',Auth()->user()->id)
+        ->count();
+        return view('dosen.dashboarddsn',compact('countstp','countstk','countskm','countbc'));
     }
 
     public function pengajuansuratdsn(){
-        $dsurat = PengajuanSurat::paginate();
+        $dsnsurat = PengajuanSurat::paginate();
         //return $psurat;
-        return view('dosen.pengajuansuratdsn',compact('dsurat'));
+        return view('dosen.pengajuansuratdsn',compact('dsnsurat'));
     }
 
     //CRUD Surat Mahasiswa
-    public function surattugasdsn(){
-        return view('dosen.surattugasdsn');
+    public function surattugaskdsn(){
+        return view('dosen.surattugaskdsn');
+    }
+    public function surattugaspdsn(){
+        return view('dosen.surattugaspdsn');
     }
     public function suratkegiatandsn(){
         return view('dosen.suratkegiatandsn');
     }
 
-    public function simpansurattugasdsn(Request $request){
+    public function simpansurattugaskdsn(Request $request){
         $request->validate([
             'tanggal' => 'required',
             'sebagai' => 'required',
@@ -77,6 +88,39 @@ class DosenController extends Controller
         // ]);
         return redirect('dosen/pengajuansuratdsn');
     }
+    public function simpansurattugaspdsn(Request $request){
+        $request->validate([
+            'tanggal' => 'required',
+            'sebagai' => 'required',
+            'nama_mitra' => 'required',
+            'tema' => 'required',
+            'keterangan' => 'required',
+            'lokasi' => 'required',
+        ], [
+            'tanggal.required' => 'Tanggal tidak boleh kosong',
+            'sebagai.required' => 'Sebagai tidak boleh kosong',
+            'nama_mitra.required' => 'Mitra Kegiatan tidak boleh kosong',
+            'tema.required' => 'Tema Kegiatan tidak boleh kosong',
+            'keterangan.required' => 'Keterangan Kegiatan tidak boleh kosong',
+            'lokasi.required' => 'Lokasi Kegiatan tidak boleh kosong',
+        ]);
+        //return $request;
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 4,
+            'tanggal' => $request -> tanggal,
+            'sebagai' => $request -> sebagai,
+            'nama_mitra' => $request -> nama_mitra,
+            'tema' => $request -> tema,
+            'keterangan' => $request -> keterangan,
+            'lokasi' => $request -> lokasi,
+        ]);
+        // User::create([
+        //     'prodi' => $request -> prodi,
+        //     'semester' => $request -> semester
+        // ]);
+        return redirect('dosen/pengajuansuratdsn');
+    }
 
     public function simpansuratkegiatandsn(Request $request){
         PengajuanSurat::create([
@@ -91,9 +135,13 @@ class DosenController extends Controller
         return view('dosen.detailpsdsn',compact('psurat'));
     }
 
-    public function editsurattgsdsn($id) {
+    public function editsurattgspdsn($id) {
         $psurat = PengajuanSurat::findorfail($id);
-        return view('dosen.editsurattgsdsn',compact('psurat'));
+        return view('dosen.editsurattgspdsn',compact('psurat'));
+    }
+    public function editsurattgskdsn($id) {
+        $psurat = PengajuanSurat::findorfail($id);
+        return view('dosen.editsurattgskdsn',compact('psurat'));
     }
 
     public function updatesuratdsn(Request $request,$id_per) {
@@ -144,6 +192,65 @@ class DosenController extends Controller
         $psurat = PengajuanSurat::where('jenis_surat','like',"%".$cari."%")
         ->paginate();
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
+    }
+
+    public function downloadsurattgsk($id){
+        $surat['surat'] = PengajuanSurat::where('id',$id)->first();
+        //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+        $html= view('surattugaskel')->with($surat);
+        //$html= view('surattugaspribadi',$asurat);
+        $dompdf = new Dompdf();
+        //  $dompdf->loadHtml($aData['html']);
+        $dompdf->set_option('isRemoteEnabled', TRUE);
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'potrait');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream('surat_tugask_'.$id.'.pdf');
+    }
+
+    public function downloadsurattgsp($id){
+        $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+        //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+
+        $html= view('surattugaspribadi')->with($asurat);
+        //$html= view('surattugaspribadi',$asurat);
+        $dompdf = new Dompdf();
+        //  $dompdf->loadHtml($aData['html']);
+        $dompdf->set_option('isRemoteEnabled', TRUE);
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'potrait');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream('surat_tugasp_'.$id.'.pdf');
+    }
+
+    public function downloadsuratk($id){
+        $asurat['suratk'] = PengajuanSurat::where('id',$id)->first();
+        //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+
+        $html= view('suratkegmhs')->with($asurat);
+        //$html= view('surattugaspribadi',$asurat);
+        $dompdf = new Dompdf();
+        //  $dompdf->loadHtml($aData['html']);
+        $dompdf->set_option('isRemoteEnabled', TRUE);
+        $dompdf->loadHtml($html);
+        
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'potrait');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        // Output the generated PDF to Browser
+        $dompdf->stream('surat_keterangan_'.$id.'.pdf');
     }
 
 }

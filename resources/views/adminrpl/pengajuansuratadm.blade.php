@@ -60,6 +60,15 @@
                       @if($asadm->jenis_id == 2)
                       <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
                       @endif
+                      @if($asadm->jenis_id == 1)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
+                      @if($asadm->jenis_id == 3)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
+                      @if($asadm->jenis_id == 5)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
                       <td>{{$asadm->js->jenis}}</td>
                       <?php if($asadm->status == 0){ ?>
                         <td><badge class="badge  badge-warning ">Sedang Diproses</badge></td>
@@ -80,7 +89,12 @@
                         <a href="{{url('/adminrpl/editsuratc',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
                         @endif
                         @if($asadm->jenis_id == 4)
-                        <a href="{{url('/adminrpl/editsuratd',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @if($asadm->ni_ang == null)
+                        <a href="{{url('/adminrpl/editsuratdp',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($asadm->ni_ang != null)
+                        <a href="{{url('/adminrpl/editsuratdk',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         @if($asadm->jenis_id == 5)
                         <a href="{{url('/adminrpl/editsurate',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
@@ -94,10 +108,8 @@
                   </tbody>
                 </table><br>
                 Halaman : {{ $asurat->currentPage() }}<br>
-                {{ $asurat->links() }}
+                
               </div>
-<<<<<<< HEAD
-=======
             </div>
 
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -116,42 +128,14 @@
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="">Surat Personalia & SK</a>
-                            <a class="dropdown-item" href="">Surat Keterangan Kegiatan</a>
-                            <a class="dropdown-item" href="">Surat Undangan & Daftar Hadir Kegiatan</a>
-                            <a class="dropdown-item" href="">Surat Tugas & DP3</a>
-                            <a class="dropdown-item" href="">Berita Acara Kegiatan</a>
-                        </div>
-                        </div>
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </div>
-                </div>
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
-            </div>
-
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Buat Surat</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pilih Surat
-                        </a>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="">Surat Personalia & SK</a>
-                            <a class="dropdown-item" href="">Surat Keterangan Kegiatan</a>
-                            <a class="dropdown-item" href="">Surat Undangan & Daftar Hadir Kegiatan</a>
-                            <a class="dropdown-item" href="">Surat Tugas & DP3</a>
-                            <a class="dropdown-item" href="">Berita Acara Kegiatan</a>
+                            <a class="dropdown-item" href="{{route('tambahps')}}">Surat Personalia</a>
+                            <a class="dropdown-item" href="{{route('tambahskdekan')}}">SK</a>
+                            <a class="dropdown-item" href="{{route('tambahsk')}}">Surat Keterangan </a>
+                            <a class="dropdown-item" href="{{route('tambahund')}}">Surat Undangan </a>
+                            <a class="dropdown-item" href="{{route('tambahdh')}}">Daftar Hadir Kegiatan</a>
+                            <a class="dropdown-item" href="{{route('tambahtgsp')}}">Surat Tugas Pribadi </a>
+                            <a class="dropdown-item" href="{{route('tambahtgsk')}}">Surat Tugas Kelompok </a>
+                            <a class="dropdown-item" href="{{route('tambahbc')}}">Berita Acara Kegiatan</a>
                         </div>
                         </div>
                     </div>
@@ -160,9 +144,6 @@
                 </div>
                 </div>
             </div>
-<<<<<<< HEAD
+
             </div>
             @endsection
-=======
-            @endsection
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7

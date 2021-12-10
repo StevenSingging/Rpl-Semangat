@@ -47,7 +47,7 @@
                   </thead>
                   <tbody>
                   @php $no=1; @endphp
-                  @foreach($dsurat as $psdsn)
+                  @foreach($dsnsurat as $psdsn)
                   @if ($psdsn->user_id == Auth::user()->id)
                   <tr align="center">
                       <td>{{$loop->iteration}}</td>
@@ -60,17 +60,27 @@
                       <td>
                         @if($psdsn->validasi == 1)
                         @if($psdsn->jenis_id == 4)
-                        <a href="{{url('/dosen/downloadtgssuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @if($psdsn->ni_ang == null)
+                        <a href="{{url('/dosen/downloadtgskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
+                        @if($psdsn->ni_ang != null)
+                        <a href="{{url('/dosen/downloadtgskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        @endif
                         @endif
                         @if($psdsn->jenis_id == 2)
-                        <a href="{{url('/dosen/downloadsksuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        <a href="{{url('/dosen/downloadskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
                         @endif
                         @endif
                         @if($psdsn->jenis_id == 2)
                         <a href="{{url('/dosen/viewsuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @endif
                         @if($psdsn->jenis_id == 4)
-                        <a href="{{url('/dosen/editsurattgsdsn',$psdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @if($psdsn->ni_ang == null)
+                        <a href="{{url('/dosen/editsurattgspdsn',$psdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($psdsn->ni_ang != null)
+                        <a href="{{url('/dosen/editsurattgskdsn',$psdsn->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         <a href="{{url('/dosen/deletesuratdsn',$psdsn->id)}}"
                         onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
@@ -101,8 +111,9 @@
                             Pilih Surat
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{route('surattugasdsn')}}">Surat Tugas</a>
-                            <a class="dropdown-item" href="{{route('suratkegiatandsn')}}">Surat Kegiatan Mahasiswa</a>
+                            <a class="dropdown-item" href="{{route('surattugaspdsn')}}">Surat Tugas Pribadi</a>
+                            <a class="dropdown-item" href="{{route('surattugaskdsn')}}">Surat Tugas Kelompok</a>
+                            <a class="dropdown-item" href="{{route('suratkegiatandsn')}}">Surat Keterangan</a>
                             <a class="dropdown-item" href="">Berita Acara</a>
                         </div>
                         </div>

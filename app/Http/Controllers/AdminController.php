@@ -6,17 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\PengajuanSurat;
 use App\Models\User;
 use App\Models\Pejabat;
-
+use App\Models\JenisSurat;
+use Illuminate\Support\Carbon;
 class AdminController extends Controller
 {
     //Dashboard Admin
     public function index(){
-        $countstp = PengajuanSurat::where('jenis_id','4')
+        $countst = PengajuanSurat::where('jenis_id','4')
         ->where('validasi','1')
-        ->where('ni_ang',null)
         ->where('status','1')
         ->count();
-        $countstk = PengajuanSurat::where('jenis_id','4')
+        $countsp = PengajuanSurat::where('jenis_id','1')
         ->where('validasi','1')
         ->where('status','1')
         ->count();
@@ -24,25 +24,130 @@ class AdminController extends Controller
         ->where('validasi','1')
         ->where('status','1')
         ->count();
-        return view('adminrpl.dashboardadm',compact('countstp','countstk','countskm'));
+        $countsbc = PengajuanSurat::where('jenis_id','5')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        $countsud = PengajuanSurat::where('jenis_id','3')
+        ->where('validasi','1')
+        ->where('status','1')
+        ->count();
+        return view('adminrpl.dashboardadm',compact('countst','countsp','countskm','countsud','countsbc')); 
     }
 
     //Tampilan Surat adminrpl
     public function pengajuansuratadm(){
-        $asurat = PengajuanSurat::where('status',null)->paginate(5);
+        $asurat = PengajuanSurat::where('status',null)->paginate();
         return view('adminrpl.pengajuansuratadm',compact('asurat'));
     }
 
     public function suratkeluaradm(){
         $asurat = PengajuanSurat::where('status',1)
-        ->paginate(5);
+        ->whereNull('validasi')
+        ->paginate();
         return view('adminrpl.suratkeluaradm',compact('asurat'));
     }
 
-    public function tambahsuratadm() {
-        return view('adminrpl.tambahsuratadm');
+    public function tambahsuratskdknadm() {
+        return view('adminrpl.tambahskdekan');
     }
 
+    public function tambahsuratpsadm() {
+        return view('adminrpl.tambahsuratpersonalia');
+    }
+
+    public function tambahsuratkadm() {
+        return view('adminrpl.tambahsuratketerangan');
+    }
+
+    public function tambahsuratundadm() {
+        return view('adminrpl.tambahsuratundangan');
+    }
+
+    public function tambahsuratdhadm() {
+        return view('adminrpl.tambahsuratdaftarhadir');
+    }
+
+    public function tambahsurattgspadm() {
+        return view('adminrpl.tambahtgsp');
+    }
+
+    public function tambahsurattgskadm() {
+        return view('adminrpl.tambahtgsk');
+    }
+
+    public function tambahsuratbcadm() {
+        return view('adminrpl.tambahbc');
+    }
+
+    public function simpanpersonalia(Request $request){
+        $request->validate([
+            'tanggal' => 'required',
+            'nama_mitra' => 'required',
+            'keterangan' => 'required',
+            'lokasi' => 'required',
+        ], [
+            'tanggal.required' => 'Tanggal tidak boleh kosong',
+            'nama_mitra.required' => 'Mitra Kegiatan tidak boleh kosong',
+            'keterangan.required' => 'Keterangan Kegiatan tidak boleh kosong',
+            'lokasi.required' => 'Lokasi Kegiatan tidak boleh kosong',
+        ]);
+        //return $request;
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 1,
+            'status' => 1,
+            'tanggal' => $request -> tanggal,
+            'nama_mitra' => $request -> nama_mitra,
+            'keterangan' => $request -> keterangan,
+            'lokasi' => $request -> lokasi,
+            'ni_ang' => $niang,
+            'nama_ang' => $nmang
+        ]);
+        // User::create([
+        //     'prodi' => $request -> prodi,
+        //     'semester' => $request -> semester
+        // ]);
+        return redirect('adminrpl/pengajuansuratadm');
+    }
+
+    public function simpanketerangan(Request $request){
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'status' => 1,
+            'jenis_id' => 2,
+            'tanggal' => $request -> tanggal,
+            'nama_mitra' => $request -> nama_mitra,
+            'keterangan' => $request -> keterangan,
+            'lokasi' => $request -> lokasi,
+        ]);
+        return redirect('adminrpl/pengajuansuratadm');
+    }
+
+    public function simpanundangan(Request $request){
+        //return $request;
+        //dd($request->all());
+        PengajuanSurat::create([
+            
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 3,
+            'status' => 1,
+            'tanggal' => $request -> tanggal,
+            'waktuml' => Carbon::createFromFormat('H:i', $request->waktuml),
+            'waktusls' => Carbon::createFromFormat('H:i', $request->waktusls),
+            'tema' => $request -> tema,
+            'nama_mitra' => $request -> nama_mitra,
+            'keterangan' => $request -> keterangan,
+            'lokasi' => $request -> lokasi,
+        ]);
+        // User::create([
+        //     'prodi' => $request -> prodi,
+        //     'semester' => $request -> semester
+        // ]);
+        return redirect('adminrpl/pengajuansuratadm');
+    }
 
     public function viewsuratadm($id) {
         $asurat = PengajuanSurat::findorfail($id);
@@ -67,10 +172,16 @@ class AdminController extends Controller
         return view('adminrpl.editsuratc',compact('asurat','pejabat'));
     }
 
-    public function editsuratd($id) {
+    public function editsuratdp($id) {
         $pejabat = Pejabat::all();
         $asurat = PengajuanSurat::findorfail($id);
-        return view('adminrpl.editsuratd',compact('asurat','pejabat'));
+        return view('adminrpl.editsuratdp',compact('asurat','pejabat'));
+    }
+
+    public function editsuratdk($id) {
+        $pejabat = Pejabat::all();
+        $asurat = PengajuanSurat::findorfail($id);
+        return view('adminrpl.editsuratdk',compact('asurat','pejabat'));
     }
 
     public function editsurate($id) {
@@ -97,10 +208,16 @@ class AdminController extends Controller
         return view('adminrpl.validasisuratc',compact('asurat','pejabat'));
     }
 
-    public function validasisuratd($id) {
+    public function validasisuratdk($id) {
         $pejabat = Pejabat::all();
         $asurat = PengajuanSurat::findorfail($id);
-        return view('adminrpl.validasisuratd',compact('asurat','pejabat'));
+        return view('adminrpl.validasisuratdk',compact('asurat','pejabat'));
+    }
+
+    public function validasisuratdp($id) {
+        $pejabat = Pejabat::all();
+        $asurat = PengajuanSurat::findorfail($id);
+        return view('adminrpl.validasisuratdp',compact('asurat','pejabat'));
     }
 
     public function validasisurate($id) {
@@ -110,13 +227,13 @@ class AdminController extends Controller
     }
 
     public function updatesuratadm(Request $request,$id) {
-        $asurat = PengajuanSurat::findorfail($id);
+        $asurat = PengajuanSurat::find($id);
         $asurat->update($request->all());
         return redirect('/adminrpl/pengajuansuratadm')->with('toast_success','Data Berhasil Update');
     }
 
     public function updatevalidasisuratadm(Request $request,$id) {
-        $asurat = PengajuanSurat::findorfail($id);
+        $asurat = PengajuanSurat::find($id);
         $asurat->update($request->all());
         return redirect('/adminrpl/suratkeluaradm')->with('toast_success','Data Berhasil Update');
     }
@@ -143,5 +260,11 @@ class AdminController extends Controller
     public function validasi($id) {
         $asurat = PengajuanSurat::findorfail($id);
         return view('adminrpl.validasi',compact('asurat'));
+    }
+
+    public function autocomplete(Request $request){
+        $getFields = User::all()
+        ->where('niuser',$request->get('niuser'))->first();
+        return json_encode($getFields);
     }
 }

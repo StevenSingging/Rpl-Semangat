@@ -27,7 +27,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3> </h3>
+                <h3>{{$countsp}} </h3>
 
                 <p>Personalia & SK</p>
               </div>
@@ -42,9 +42,9 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>{{$countstp}}</h3>
+                <h3>{{$countskm}}</h3>
 
-                <p>Surat Kegiatan Mahasiswa</p>
+                <p>Surat Keterangan</p>
               </div>
               <div class="icon">
               <i class="fas fa-envelope"></i>
@@ -57,7 +57,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3></h3>
+                <h3>{{$countsud}}</h3>
 
                 <p>Surat Undangan & Daftar Hadir Kegiatan</p>
               </div>
@@ -72,7 +72,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3> </h3>
+                <h3> {{$countst}} </h3>
 
                 <p>Surat Tugas & DP3 </p>
               </div>
@@ -87,7 +87,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3></h3>
+                <h3>{{$countsbc}}</h3>
 
                 <p>Berita Acara Kegiatan</p>
               </div>

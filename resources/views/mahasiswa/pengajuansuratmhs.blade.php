@@ -40,6 +40,7 @@
                     <th>No</th>
                     <th>Tanggal Pengajuan</th>
                     <th>Jenis Surat</th>
+                    <th>Keterangan</th>
                     <th>Status</th>
                     <th>Aksi</th>
                   </tr>
@@ -59,17 +60,29 @@
                       <td>
                         @if($psmhs->validasi == 1)
                         @if($psmhs->jenis_id == 4)
+                        @if($psmhs->ni_ang == null)
                         <a href="{{url('/mahasiswa/cetakpstpmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        
+                        @endif
+                        @if($psmhs->ni_ang != null)
+                        <a href="{{url('/mahasiswa/cetakpstkmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        
+                        @endif
                         @endif
                         @if($psmhs->jenis_id == 2)
-                        <a href="{{url('/mahasiswa/downloadsksuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        <a href="{{url('/mahasiswa/cetakskmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
                         @endif
                         @endif
                         @if($psmhs->jenis_id == 2)
                         <a href="{{url('/mahasiswa/viewsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @endif
                         @if($psmhs->jenis_id == 4)
-                        <a href="{{url('/mahasiswa/editsurattgsmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @if($psmhs->ni_ang == null)
+                        <a href="{{url('/mahasiswa/editsurattgspmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($psmhs->ni_ang != null)
+                        <a href="{{url('/mahasiswa/editsurattgskmhs',$psmhs->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         <a href="{{url('/mahasiswa/deletesuratmhs',$psmhs->id)}}"
                         onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
@@ -100,7 +113,8 @@
                             Pilih Surat
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a class="dropdown-item" href="{{ route('surattugasmhs') }}">Surat Tugas</a>
+                            <a class="dropdown-item" href="{{ route('surattugaskmhs') }}">Surat Tugas Kelompok</a>
+                            <a class="dropdown-item" href="{{ route('surattugaspmhs') }}">Surat Tugas Pribadi</a>
                             <a class="dropdown-item" href="{{ route('suratkegiatanmhs') }}">Surat Kegiatan Mahasiswa</a>
                         </div>
                         </div>

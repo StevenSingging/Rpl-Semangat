@@ -77,8 +77,6 @@
                 {{ $psurat->links() }}
               </div>
             </div>
-<<<<<<< HEAD
+
             @endsection
-=======
-            @endsection
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
+

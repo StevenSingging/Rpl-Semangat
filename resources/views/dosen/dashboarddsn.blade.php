@@ -63,7 +63,7 @@
             <div class="col-sm-4 col-6">
                 <div class="small-box bg-warning">
                     <div class="inner">
-                        <h3></h3>
+                        <h3>{{$countbc}}</h3>
                         <p>Berita Acara</p>
                     </div>
                 <div class="icon">

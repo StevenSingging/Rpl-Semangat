@@ -1,5 +1,5 @@
 @extends('template.welcome')
-<title>Pengajuan Surat</title>
+<title>Surat Keluar</title>
 @section('content')
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
 <link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -14,7 +14,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{route('adminrpl')}}">Beranda</a></li>
-              <li class="breadcrumb-item active">Pengajuan Surat</li>
+              <li class="breadcrumb-item active">Surat Keluar</li>
             </ol>
           </div>
         </div>
@@ -67,6 +67,15 @@
                       @if($asadm->jenis_id == 2)
                       <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
                       @endif
+                      @if($asadm->jenis_id == 3)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
+                      @if($asadm->jenis_id == 1)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
+                      @if($asadm->jenis_id == 5)
+                      <td>{{date('d-m-Y', strtotime($asadm->created_at))}}</td>
+                      @endif
                       <td>{{$asadm->js->jenis}}</td>
                         <td><badge class="badge {{ ($asadm->validasi == 0) ? 'badge-warning' :
                           'badge-success'}}">{{ ($asadm->validasi == 0) ? 'Belum Ditanda Tangan' :
@@ -83,7 +92,12 @@
                         <a href="{{url('/adminrpl/validasisuratc',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
                         @endif
                         @if($asadm->jenis_id == 4 && $asadm->validasi == 0)
-                        <a href="{{url('/adminrpl/validasisuratd',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @if($asadm->ni_ang == null)
+                        <a href="{{url('/adminrpl/validasisuratdp',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($asadm->ni_ang != null)
+                        <a href="{{url('/adminrpl/validasisuratdk',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         @if($asadm->jenis_id == 5 && $asadm->validasi == 0)
                         <a href="{{url('/adminrpl/validasisurate',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
@@ -97,11 +111,9 @@
                   </tbody>
                 </table><br>
                 Halaman : {{ $asurat->currentPage() }}<br>
-                {{ $asurat->links() }}
+  
               </div>
             </div>
-<<<<<<< HEAD
+
             @endsection
-=======
-            @endsection
->>>>>>> 9c161e039e2f7d9175f16a85a899b53f492332a7
+

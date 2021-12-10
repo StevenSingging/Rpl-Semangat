@@ -24,9 +24,11 @@
 }
     </style>
 
+</head>
+<body>
     <table colspan="4">
         <tr>
-            <td><img src="https://i.ibb.co/rcffwdY/Ukdw.png" alt="Ukdw" width="100" height=""></td>
+        <td><img src="https://i.ibb.co/rcffwdY/Ukdw.png" alt="Ukdw" width="100" height=""> </td>
             <td><font size ="2">UNIVERSITAS KRISTEN DUTA WACANA </font><BR>
                 <font size="4"><b> FAKULTAS TEKNOLOGI INFOMASI</b></font><br>
                 <font size="2"> PROGRAM STUDI INFORMATIKA</font><br>
@@ -34,44 +36,50 @@
             </td>   
         </tr>
     </table>
-</head>
-<body>
     <table align="center" >
         <tr>
-            <td align="center" ><strong><u>SURAT TUGAS&nbsp;</u></strong><br>  No: {{$asurat->nomor_surat}} <br><br></td>
+            <td align="center" ><strong><u>SURAT TUGAS&nbsp;</u></strong><br> No: {{$surat->nomor_surat}} <br><br></td>
         </tr>
     </table>
     <table>
         <tr>
             <td colspan ="">Dengan ini Dekan Fakultas Teknologi Informasi Universitas Kristen Duta 
-                Wacana <br> memberikan tugas kepada {{$asurat->user->level}} tersebut di bawah ini:<br><br>
+                Wacana <br> memberikan tugas kepada para {{$surat->user->level}} tersebut di bawah ini:<br><br>
             </td>
         </tr>
-        <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Nama&nbsp;  : {{$asurat->user->name}}</td>
+    </table>
+    <table border= 1px cellpadding="10" >
+        <tr align="center">
+            <td><b>No.<b></td>
+            <td><b>NIM/NIDN<b></td>
+            <td><b>Nama<b></td>
         </tr>
-        @if($asurat->user->level == 'mahasiswa')
+        <?php
+        $c=array_combine($exp,$exp1);
+        print_r($c);
+        ?>
+        @foreach($c as $key => $value)
         <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;NIM&nbsp;&thinsp;&thinsp;&thinsp;  : {{$asurat->user->niuser}}<br><br></td>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$key}}</td>
+            <td>{{$value}}</td> 
+           
         </tr>
-        @endif
-        @if($asurat->user->level == 'dosen')
+        @endforeach
+    </table >
+    <table>
         <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;NIK&nbsp;&thinsp;&thinsp;&thinsp;  : {{$asurat->user->niuser}}<br><br></td>
-        </tr>
-        @endif
-        <tr>
-            <td colspan =""> <br>Untuk bertugas sebagai {{$asurat->sebagai}} bersama {{$asurat->nama_mitra}}<br>dengan ,
+            <td colspan =""> <br>Untuk bertugas sebagai {{$surat->sebagai}} bersama <br>dengan {{$surat->nama_mitra}},
                 yang diselengarakan pada : <br><br></td>
         </tr>
         <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;Tanggal&thinsp;&thinsp;: {{$asurat->tanggal}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;Hari/Tanggal&thinsp;&thinsp;: {{$surat->tanggal}}</td>
         </tr>
         <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;Tema&emsp;&emsp;&emsp;&thinsp;  : {{$asurat->tema}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;Tema&emsp;&emsp;&emsp;&thinsp;  : {{$surat->tema}}</td>
         </tr>
         <tr>
-            <td>&emsp;&emsp;&emsp;&emsp;Tempat&emsp;&emsp;&nbsp;&thinsp;  : {{$asurat->lokasi}}</td>
+            <td>&emsp;&emsp;&emsp;&emsp;Tempat&emsp;&emsp;&nbsp;&thinsp;  :{{$surat->lokasi}}</td>
         </tr>
         <tr >
             <td><br>Demikian surat tugas ini dibuat untuk dapat dipergunakan sebagaimana perlunya.<br><br></td>
@@ -79,20 +87,19 @@
         </table> <br>
         <table  align="left">
         <tr>
-            <td><u>Yogyakarta,{{date('d-m-Y', strtotime($asurat->updated_at))}}</u></td>
+            <td><u>Yogyakarta,{{date('d-m-Y', strtotime($surat->updated_at))}}</u></td>
         </tr>
         <tr>
-            <td><u>{{$asurat->pj->posisi}}</u></td>
+            <td><u>{{$surat->pj->posisi}}</u></td>
         </tr>
         <tr>
             <td height="80"><img src="https://i.ibb.co/ZY4DhcD/ttd-qrcode.png" width="100" height=""></td>
         </tr><br>
         <tr>
-            <td>{{$asurat->pj->name}}<u></u><br>{{$asurat->pj->nik}}</td>
+            <td><u>{{$surat->pj->name}}</u><br>{{$surat->pj->nik}}</td>
         </tr>
         <br>
     </table>
-    
 </div>
 </body>
 </html>
