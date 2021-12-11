@@ -20,7 +20,7 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{route('simpansurattugaspmhs')}}" method="post">
+            <form action="{{route('simpantugaspribadi')}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Kegiatan</label>

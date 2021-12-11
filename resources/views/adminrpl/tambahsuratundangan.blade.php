@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Kepentingan Mitra</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" value="" name="keterangan" class="form-control">
+                                    <input type="text" id="inputPassword" value="" name="sebagai" class="form-control">
                                 </div>
                         </div>
                         <div class="form-group row">

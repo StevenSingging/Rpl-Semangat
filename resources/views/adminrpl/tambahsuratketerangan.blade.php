@@ -20,25 +20,30 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{route('simpanpersonalia')}}" method="post">
+            <form action="{{route('simpanketerangan')}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">NIM/NIDN</label>
                                 <div class="col-sm-10">
-                                    <input type="text"  style=width:200px name="niuser"  id="niuser" class="form-control" placeholder="" required>
+                                    <input type="text"  style=width:200px name="niuser"  id="niuser" class="form-control" value="{{old('niuser')}}" required>
+                                </div>
+                        </div>
+                        <div class="form-group row">
+                                <div class="col-sm-10">
+                                    <input type="text"  style=width:200px name="id"  id="id" class="form-control" value="{{old('id')}}" readonly hidden>
                                 </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Nama</label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="inputPassword" style=width:200px  name="name" id="name" class="form-control" placeholder="" disabled>
+                                    <input type="text"  style=width:200px  name="name" id="name" class="form-control" placeholder=""  readonly>
                                 </div>
                         </div>
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Program Studi</label>
                                 <div class="col-sm-10">
 
-                                    <input type="text" id="inputPassword" style=width:200px name="prodi" class="form-control" placeholder="" disabled>
+                                    <input type="text"  style=width:200px name="prodi" id="prodi" class="form-control" placeholder=""  readonly>
 
                                 </div>
                         </div>
@@ -46,7 +51,7 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Semester/Waktu Mengajar</label>
                                 <div class="col-sm-10">
 
-                                    <input type="text" id="inputPassword" style=width:200px name="semester" class="form-control" placeholder="" disabled>
+                                    <input type="text"  style=width:200px name="semester"  id="semester" class="form-control" placeholder="" readonly>
 
                                 </div>
                         </div>
@@ -56,32 +61,27 @@
                 </div>
             </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>       
+        
         <script type="text/javascript">
-                        $("#niuser").focusout(function(e){
-                        // alert($(this).val());
-                        var niuser = $(this).val();
-                        $.ajax({
-                            type: "GET",
-                            url: "{{route('autocomplete')}}",
-                            data: {'niuser':niuser},
-                            dataType: 'json',
-                            success : function(e) {
-                                if(e.length === 0){
-                                    $('.flash-message').html('Data not found');
-                                    $('#niuser').val('');
-                                }
-                                else {
-                                    $('.flash-message').html('Data found');
-                                    r = $.parseJSON(e); //convert json to array
-                                    $('#name').val(r.name); 
-
-                                    //$("#niuser").html(e); //-> I dont realy understand why you use this part of code?
-
-                                }
-                            }
-                            
-                        });
+                $("#niuser").focusout(function(e){
+                // alert($(this).val());
+                var niuser = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{route('autocomplete')}}",
+                    data: {'niuser':niuser},
+                    dataType: 'json',
+                    success : function(data) {
+                        $('#id').val(data.id); 
+                        $('#name').val(data.name); 
+                        $('#prodi').val(data.prodi);
+                        $('#semester').val(data.semester);
+                    },
+                    error: function(response) {
+                        alert(response.responseJSON.message);
+                    }
                 });
+            });
         </script>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>

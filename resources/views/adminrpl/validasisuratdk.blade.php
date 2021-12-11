@@ -85,12 +85,17 @@
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tambah Anggota</label>
                             <div class="col-2">
+                            @foreach($exp1 as $sia)
                                 <div class="input-field">
-                                <input type="text" class="form-control" id="inputPassword" value="{{$asurat->ni_ang}}" name="ni_ang[]" placeholder="NIM">
-                            </div>
+                                <input type="text" class="form-control mb-4" id="inputPassword" value="{{$sia}}" name="ni_ang[]" placeholder="NIM">
+                                </div>
+                            @endforeach
+                            
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control" id="inputPassword" value="{{$asurat->nama_ang}}" name="nama_ang[]" placeholder="Nama">
+                            @foreach($esp1 as $sias)
+                                <input type="text" class="form-control mb-4" id="inputPassword" value="{{$sias}}" name="nama_ang[]" placeholder="Nama">
+                            @endforeach
                             </div>
                             <div class="col-4">
                                 <button class="add-more btn btn-success " type="button"><i class="glyphicon glyphicon-plus"></i> Tambah
@@ -120,7 +125,7 @@
                         </div></div>
                 <div class="mahasiswa"></div>
                 <div class="modal-footer">
-                    <a class="btn btn-secondary" role="button" href="{{ route('pengajuansuratmhs') }}">Batal</a>
+                    <a class="btn btn-secondary" role="button" href="{{ route('suratkeluaradm') }}">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

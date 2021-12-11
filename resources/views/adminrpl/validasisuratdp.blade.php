@@ -106,7 +106,7 @@
                         </div></div>
                 <div class="mahasiswa"></div>
                 <div class="modal-footer">
-                    <a class="btn btn-secondary" role="button" href="{{ route('pengajuansuratmhs') }}">Batal</a>
+                    <a class="btn btn-secondary" role="button" href="{{ route('suratkeluaradm') }}">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

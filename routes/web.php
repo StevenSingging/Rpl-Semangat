@@ -111,6 +111,11 @@ Route::get('/adminrpl/tugaskel', '\App\Http\Controllers\AdminController@tambahsu
 
 Route::post('/adminrpl/simpanpersonalia', '\App\Http\Controllers\AdminController@simpanpersonalia')->name('simpanpersonalia');
 Route::post('/adminrpl/simpanundangan', '\App\Http\Controllers\AdminController@simpanundangan')->name('simpanund');
+Route::post('/adminrpl/simpandaftarhadir', '\App\Http\Controllers\AdminController@simpandaftarhadir')->name('simpandf');
+Route::post('/adminrpl/simpanketerangan', '\App\Http\Controllers\AdminController@simpanketerangan')->name('simpanketerangan');
+Route::post('/adminrpl/simpansuratpribadi', '\App\Http\Controllers\AdminController@simpantugaspribadi')->name('simpantugaspribadi');
+Route::post('/adminrpl/simpansuratkelompok', '\App\Http\Controllers\AdminController@simpantugaskelompok')->name('simpantugaskelompok');
+Route::post('/adminrpl/simpanberitaacara', '\App\Http\Controllers\AdminController@simpanberitaacara')->name('simpanberitaacara');
 
 Route::get('/adminrpl/beritaacara', '\App\Http\Controllers\AdminController@tambahsuratbcadm')->name('tambahbc');
 Route::get('/adminrpl/editsurata/{id}', '\App\Http\Controllers\AdminController@editsurata')->name('editsurata');
@@ -123,9 +128,15 @@ Route::post('/adminrpl/updatesuratadm/{id}', '\App\Http\Controllers\AdminControl
 Route::post('/adminrpl/updatevalidasisuratadm/{id}', '\App\Http\Controllers\AdminController@updatevalidasisuratadm')->name('updatevalidasisuratadm');
 Route::get('/adminrpl/deletesuratadm/{id}', '\App\Http\Controllers\AdminController@deletesuratadm')->name('deletesuratadm');
 Route::get('/adminrpl/suratkeluaradm', '\App\Http\Controllers\AdminController@suratkeluaradm')->name('suratkeluaradm');
+
 Route::get('/adminrpl/validasisurata/{id}', '\App\Http\Controllers\AdminController@validasisurata')->name('validasisurata');
+Route::get('/adminrpl/validasisuratap/{id}', '\App\Http\Controllers\AdminController@validasisuratap')->name('validasisuratap');
+
 Route::get('/adminrpl/validasisuratb/{id}', '\App\Http\Controllers\AdminController@validasisuratb')->name('validasisuratb');
+
 Route::get('/adminrpl/validasisuratc/{id}', '\App\Http\Controllers\AdminController@validasisuratc')->name('validasisuratc');
+Route::get('/adminrpl/validasisuratcdf/{id}', '\App\Http\Controllers\AdminController@validasisuratcdf')->name('validasisuratcdf');
+
 Route::get('/adminrpl/validasisuratdk/{id}', '\App\Http\Controllers\AdminController@validasisuratdk')->name('validasisuratdk');
 Route::get('/adminrpl/validasisuratdp/{id}', '\App\Http\Controllers\AdminController@validasisuratdp')->name('validasisuratdp');
 Route::get('/adminrpl/validasisurate/{id}', '\App\Http\Controllers\AdminController@validasisurate')->name('validasisurate');

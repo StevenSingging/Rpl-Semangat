@@ -60,6 +60,8 @@
 
                         @endif
 
+                    
+
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Kode</label>
                                 <div class="col-sm-10">
@@ -83,7 +85,7 @@
                             </select>
                         </div></div>
                 <div class="modal-footer">
-                    <a class="btn btn-secondary" role="button" href="{{ route('pengajuansuratadm') }}">Batal</a>
+                    <a class="btn btn-secondary" role="button" href="{{ route('suratkeluaradm') }}">Batal</a>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>

@@ -1,9 +1,6 @@
 @extends('template.welcome')
 <title>Surat Keluar</title>
 @section('content')
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
 
 <div class="content-header">
       <div class="container-fluid">
@@ -27,7 +24,7 @@
             <div class="card">
               <div class="card-body">
                 <nav class="navbar navbar-light bg-light">
-                    <h1>Data Pengajuan Surat</h1>
+                    <h1>Data Surat Keluar</h1>
                 </nav>
                 <nav class="navbar navbar-light">
                 <a></a>
@@ -83,13 +80,23 @@
                         <td>
                         <a href="{{url('/adminrpl/viewsuratadm',$asadm->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @if($asadm->jenis_id == 1 && $asadm->validasi == 0)
+                        @if($asadm->ni_ang != null)
+                        <a href="{{url('/adminrpl/validasisuratap',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($asadm->ni_ang == null)
                         <a href="{{url('/adminrpl/validasisurata',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         @if($asadm->jenis_id == 2 && $asadm->validasi == 0)
                         <a href="{{url('/adminrpl/validasisuratb',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
                         @endif
                         @if($asadm->jenis_id == 3 && $asadm->validasi == 0)
+                        @if($asadm->ni_ang == null)
                         <a href="{{url('/adminrpl/validasisuratc',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
+                        @if($asadm->ni_ang != null)
+                        <a href="{{url('/adminrpl/validasisuratcdf',$asadm->id)}}" role="button"><i class="fas fa-user-edit"></i></a> |
+                        @endif
                         @endif
                         @if($asadm->jenis_id == 4 && $asadm->validasi == 0)
                         @if($asadm->ni_ang == null)
