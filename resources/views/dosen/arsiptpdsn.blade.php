@@ -1,9 +1,7 @@
 @extends('template.welcome')
 <title>Surat Tugas Pribadi</title>
 @section('content')
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
 
 <div class="content-header">
       <div class="container-fluid">
@@ -48,22 +46,17 @@
                   <tr align="center">
                     <th scope="row"><?php echo e($no++) + (($psurat->currentPage()-1) * $psurat->perPage()) ?></th>
                       <td>{{$psdsn->nomor_surat}}</td>
-                      @if($psdsn->jenis_id == 4)
                       <td>{{date('d-m-Y', strtotime($psdsn->tanggal))}}</td>
-                      @endif
-                      @if($psdsn->jenis_id == 2)
-                      <td>{{date('d-m-Y', strtotime($psdsn->created_at))}}</td>
-                      @endif
                       <td>{{$psdsn->js->jenis}}</td>
                       <?php if($psdsn->status == 0){ ?>
                         <td><badge class="badge  badge-warning ">Sedang Diproses</badge></td>
                       <?php }elseif($psdsn->status == 1){ ?>
-                        <td><badge class="badge  badge-success ">Diterima</badge></td>
+                        <td><badge class="badge  badge-success ">Validasi</badge></td>
                       <?php }elseif($psdsn->status == 2){ ?>
                         <td><badge class="badge  badge-danger ">Ditolak</badge></td>
                       <?php } ?>
                         <td>
-                        <a href="{{url('/mahasiswa/viewsuratmhs',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
+                        <a href="{{url('/dosen/downloaduratpribadidsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
                         <a href="{{url('/mahasiswa/deletesuratmhs',$psdsn->id)}}"
                         onclick="return confirm('Apakah Anda yakin data akan dihapus ?')"
                         role="button"><i class="fas fa-user-minus" style="color : red"></i></a>

@@ -35,7 +35,8 @@ class DosenController extends Controller
     }
 
     public function pengajuansuratdsn(){
-        $dsnsurat = PengajuanSurat::paginate();
+        $dsnsurat = PengajuanSurat::whereNull('status')
+        ->paginate();
         //return $psurat;
         return view('dosen.pengajuansuratdsn',compact('dsnsurat'));
     }
@@ -136,12 +137,17 @@ class DosenController extends Controller
     }
 
     public function editsurattgspdsn($id) {
-        $psurat = PengajuanSurat::findorfail($id);
-        return view('dosen.editsurattgspdsn',compact('psurat'));
+        $psurat = PengajuanSurat::find($id);
+        
+        return view('dosen.editsurattgspdsn',compact('psurat')); 
     }
     public function editsurattgskdsn($id) {
         $psurat = PengajuanSurat::findorfail($id);
-        return view('dosen.editsurattgskdsn',compact('psurat'));
+        $tgs = $psurat->ni_ang;
+        $tgs1 = explode(',',$tgs);
+        $ecp = $psurat->nama_ang;
+        $esp1 = explode(',',$ecp);
+        return view('dosen.editsurattgskdsn',compact('psurat','tgs1','esp1'));
     }
 
     public function updatesuratdsn(Request $request,$id_per) {
@@ -159,9 +165,9 @@ class DosenController extends Controller
 
     public function arsipstpdsn(){
         $psurat = PengajuanSurat::where('jenis_id','4')
-        ->where('validasi','1')
-        ->where('ni_ang',null)
-        ->where('status','1')
+        ->whereNotNull('validasi')
+        ->whereNull('ni_ang')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
         return view('dosen.arsiptpdsn',compact('psurat'));
@@ -169,9 +175,9 @@ class DosenController extends Controller
 
     public function arsipstkdsn(){
         $psurat = PengajuanSurat::where('jenis_id','4')
-        ->where('validasi','1')
+        ->whereNotNull('validasi')
         ->whereNotNull('ni_ang')
-        ->where('status','1')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
         return view('dosen.arsiptkdsn',compact('psurat'));
@@ -179,8 +185,8 @@ class DosenController extends Controller
 
     public function arsipskmdsn(){
         $psurat = PengajuanSurat::where('jenis_id','2')
-        ->where('validasi','1')
-        ->where('status','1')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
         return view('dosen.arsipskmdsn',compact('psurat'));

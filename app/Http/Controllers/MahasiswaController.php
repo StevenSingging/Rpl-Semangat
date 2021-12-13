@@ -33,7 +33,8 @@ class MahasiswaController extends Controller
 
     //Tampilan Surat Mahasiswa
     public function pengajuansuratmhs(){
-        $psurat = PengajuanSurat::paginate();
+        $psurat = PengajuanSurat::whereNull('status')
+        ->paginate();
         //return $psurat;
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
@@ -146,7 +147,7 @@ class MahasiswaController extends Controller
         $exp = $psurat->ni_ang;
         $exp1 = explode(',',$exp);
         $esp = $psurat->nama_ang;
-        $esp1 = explode(',',$esp);
+        $esp1 = explode(',',$esp); 
         return view('mahasiswa.editsurattgskmhs',compact('psurat','exp1','esp1'));
     }
 
@@ -165,9 +166,9 @@ class MahasiswaController extends Controller
 
     public function arsipstpmhs(){
         $psurat = PengajuanSurat::where('jenis_id','4')
-        ->where('validasi','1')
-        ->where('ni_ang',null)
-        ->where('status','1')
+        ->whereNotNull('validasi')
+        ->whereNull('ni_ang')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
         return view('mahasiswa.arsipstpmhs',compact('psurat'));
@@ -175,9 +176,9 @@ class MahasiswaController extends Controller
 
     public function arsipstkmhs(){
         $psurat = PengajuanSurat::where('jenis_id','4')
-        ->where('validasi','1')
+        ->whereNotNull('validasi')
         ->whereNotNull('ni_ang')
-        ->where('status','1')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
         return view('mahasiswa.arsipstkmhs',compact('psurat'));
@@ -185,12 +186,12 @@ class MahasiswaController extends Controller
 
     public function arsipskmmhs(){
         $psurat = PengajuanSurat::where('jenis_id','2')
-        ->where('validasi','1')
-        ->where('status','1')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
         ->paginate();
         //return $psurat;
 
-        return view('mahasiswa.arsipkmmhs',compact('psurat'));
+        return view('mahasiswa.arsipskmmhs',compact('psurat'));
 
     }
 

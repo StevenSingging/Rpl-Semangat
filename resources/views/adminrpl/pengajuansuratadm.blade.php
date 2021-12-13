@@ -1,9 +1,7 @@
 @extends('template.welcome')
 <title>Pengajuan Surat</title>
 @section('content')
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-<link rel="stylesheet" href=".{{asset('Admin/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+
 
 <div class="content-header">
       <div class="container-fluid">
@@ -31,7 +29,7 @@
                 </nav>
                 <nav class="navbar navbar-light">
                 <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal">Tambah Data</a>
-                    <form method="GET" action="{{ route('searchmhs') }}">
+                    <form method="GET" action="{{ route('searchadm') }}">
                         <input name="key" value="@php echo old('cari') @endphp" placeholder="Search">
                         <button class="btn btn-dark" type="submit">Search</button>
                     </form>

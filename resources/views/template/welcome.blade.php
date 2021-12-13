@@ -9,8 +9,8 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-<body class="hold-transition sidebar-mini">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
@@ -39,20 +39,17 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img src="{{asset('Admin/dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">{{auth()->user()->name}}</a>
+          <a class="d-block">{{auth()->user()->name}}</a>
+          <p class="text-muted">{{ Auth::user()->level }}</p>
         </div>
       </div>
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
             @if(auth()->user()->level == "mahasiswa")
             <li class="nav-item">
                 <a href="{{route('pengajuansuratmhs')}}" class="nav-link">
@@ -99,30 +96,17 @@
             @endif
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     @yield('content')
 </div>
-<!-- ./wrapper -->
-
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-<!-- jQuery -->
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<!-- Bootstrap 4 -->
+<script src="{{asset('Admin/plugins/jquery/jquery.min.js') }}"></script>
 <script src="{{asset('Admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{asset('Admin/dist/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
 <script src="{{asset('Admin/dist/js/demo.js') }}"></script>
 
 </body>

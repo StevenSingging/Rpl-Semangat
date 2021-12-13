@@ -58,19 +58,6 @@
                           'badge-success'}}">{{ ($psdsn->status == 0) ? 'Sedang diproses' :
                           'Validasi'}}</badge></td>
                       <td>
-                        @if($psdsn->validasi == 1)
-                        @if($psdsn->jenis_id == 4)
-                        @if($psdsn->ni_ang == null)
-                        <a href="{{url('/dosen/downloadtgskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        @endif
-                        @if($psdsn->ni_ang != null)
-                        <a href="{{url('/dosen/downloadtgskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        @endif
-                        @endif
-                        @if($psdsn->jenis_id == 2)
-                        <a href="{{url('/dosen/downloadskdsn',$psdsn->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        @endif
-                        @endif
                         @if($psdsn->jenis_id == 2)
                         <a href="{{url('/dosen/viewsuratdsn',$psdsn->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @endif

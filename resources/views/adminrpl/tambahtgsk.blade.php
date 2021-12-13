@@ -86,11 +86,11 @@
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tambah Anggota</label>
                             <div class="col-2">
                                 <div class="input-field">
-                                <input type="text" class="form-control" id="inputPassword" name="ni_ang[]" placeholder="NIM">
+                                <input type="text" class="form-control" id="niuser" name="ni_ang[]" placeholder="NIM">
                             </div>
                             </div>
                             <div class="col-3">
-                                <input type="text" class="form-control" id="inputPassword" name="nama_ang[]" placeholder="Nama">
+                                <input type="text" class="form-control" id="name" name="nama_ang[]" placeholder="Nama" readonly>
                             </div>
                             <div class="col-4">
                                 <button class="add-more btn btn-success " type="button"><i class="glyphicon glyphicon-plus"></i> Tambah
@@ -104,18 +104,35 @@
             </form>
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
             <script type="text/javascript">
+                
+                $("#niuser").focusout(function(e){
+                    // alert($(this).val());
+                    var niuser = $(this).val();
+                    $.ajax({
+                        type: "GET",
+                        url: "{{route('autocomplete')}}",
+                        data: {'niuser':niuser},
+                        dataType: 'json',
+                        success : function(data) {
+                            $('#name').val(data.name); 
+                            
+                        },
+                        error: function(response) {
+                            alert(response.responseJSON.message);
+                        }
+                    });
+                });
+
                 $(".add-more").on ('click',function(){
                     addmhs();
                 });
                 function addmhs(){
-                    var mhs =' <div class="control-group"><div class="form-group row"><label for="inputPassword" class="col-sm-2 col-form-label"></label><div class="col-2"><input type="text" class="form-control" id="inputPassword" name="ni_ang[]" placeholder="NIM"></div><div class="col-3"><input type="text" class="form-control" id="inputPassword" name="nama_ang[]" placeholder="Nama"></div><div class="col-4"><button class="remove btn btn-danger" type="button"><i class="glyphicon glyphicon-plus"></i> Hapus</div>';
+                    var mhs =' <div class="control-group"><div class="form-group row"><label for="inputPassword" class="col-sm-2 col-form-label"></label><div class="col-2"><input type="text" class="form-control" id="niuser" name="ni_ang[]" placeholder="NIM"></div><div class="col-3"><input type="text" class="form-control" id="name" name="nama_ang[]" placeholder="Nama" ></div><div class="col-4"><button class="remove btn btn-danger" type="button"><i class="glyphicon glyphicon-plus"></i> Hapus</div>';
                     $('.mahasiswa').append(mhs);
                 }
                 // saat tombol remove dklik control group akan dihapus
                 $("body").on("click",".remove",function(){
                     $(this).parents(".control-group").remove();
                 });
-            </script>
-            <script type="text/javascript">
             </script>
 @endsection

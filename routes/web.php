@@ -116,6 +116,7 @@ Route::post('/adminrpl/simpanketerangan', '\App\Http\Controllers\AdminController
 Route::post('/adminrpl/simpansuratpribadi', '\App\Http\Controllers\AdminController@simpantugaspribadi')->name('simpantugaspribadi');
 Route::post('/adminrpl/simpansuratkelompok', '\App\Http\Controllers\AdminController@simpantugaskelompok')->name('simpantugaskelompok');
 Route::post('/adminrpl/simpanberitaacara', '\App\Http\Controllers\AdminController@simpanberitaacara')->name('simpanberitaacara');
+Route::post('/adminrpl/simpansuratdekan', '\App\Http\Controllers\AdminController@simpanskdekan')->name('simpanskdekan');
 
 Route::get('/adminrpl/beritaacara', '\App\Http\Controllers\AdminController@tambahsuratbcadm')->name('tambahbc');
 Route::get('/adminrpl/editsurata/{id}', '\App\Http\Controllers\AdminController@editsurata')->name('editsurata');
@@ -141,7 +142,11 @@ Route::get('/adminrpl/validasisuratdk/{id}', '\App\Http\Controllers\AdminControl
 Route::get('/adminrpl/validasisuratdp/{id}', '\App\Http\Controllers\AdminController@validasisuratdp')->name('validasisuratdp');
 Route::get('/adminrpl/validasisurate/{id}', '\App\Http\Controllers\AdminController@validasisurate')->name('validasisurate');
 Route::get('/autocomplete', '\App\Http\Controllers\AdminController@autocomplete')->name('autocomplete');
-
+Route::get('/adminrpl/arsipsa', '\App\Http\Controllers\AdminController@arsipsa')->name('arsipsa');
+Route::get('/adminrpl/arsipsb', '\App\Http\Controllers\AdminController@arsipsb')->name('arsipsb');
+Route::get('/adminrpl/arsipsc', '\App\Http\Controllers\AdminController@arsipsc')->name('arsipsc');
+Route::get('/adminrpl/arsipsd', '\App\Http\Controllers\AdminController@arsipsd')->name('arsipsd');
+Route::get('/adminrpl/arsipse', '\App\Http\Controllers\AdminController@arsipse')->name('arsipse');
 
 //Mencari Surat Admin
 Route::get('/adminrpl/searchadm','\App\Http\Controllers\AdminController@searchadm')->name('searchadm');

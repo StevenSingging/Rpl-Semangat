@@ -34,7 +34,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('arsipsa')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -49,7 +49,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('arsipsb')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -64,7 +64,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('arsipsc')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
@@ -79,7 +79,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('arsipsd')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -94,7 +94,7 @@
               <div class="icon">
               <i class="fas fa-envelope"></i>
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{route('arsipse')}}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 @endsection

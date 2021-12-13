@@ -58,21 +58,6 @@
                           'badge-success'}}">{{ ($psmhs->status == 0) ? 'Sedang diproses' :
                           'Validasi'}}</badge></td>
                       <td>
-                        @if($psmhs->validasi == 1)
-                        @if($psmhs->jenis_id == 4)
-                        @if($psmhs->ni_ang == null)
-                        <a href="{{url('/mahasiswa/cetakpstpmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        
-                        @endif
-                        @if($psmhs->ni_ang != null)
-                        <a href="{{url('/mahasiswa/cetakpstkmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        
-                        @endif
-                        @endif
-                        @if($psmhs->jenis_id == 2)
-                        <a href="{{url('/mahasiswa/cetakskmhs',$psmhs->id)}}" role="button"><i class="fas fa-download"></i></a> |
-                        @endif
-                        @endif
                         @if($psmhs->jenis_id == 2)
                         <a href="{{url('/mahasiswa/viewsuratmhs',$psmhs->id)}}" role="button"><i class="fas fa-eye"></i></a> |
                         @endif

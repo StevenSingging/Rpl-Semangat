@@ -37,7 +37,8 @@ class AdminController extends Controller
 
     //Tampilan Surat adminrpl
     public function pengajuansuratadm(){
-        $asurat = PengajuanSurat::where('status',null)->paginate(5);
+        $asurat = PengajuanSurat::whereNull('status')
+        ->paginate();
         return view('adminrpl.pengajuansuratadm',compact('asurat'));
     }
 
@@ -288,6 +289,22 @@ class AdminController extends Controller
         return redirect('adminrpl/suratkeluaradm');
     }
 
+    public function simpanskdekan(Request $request){
+       
+        //return $request;
+        PengajuanSurat::create([
+            'user_id' => $request -> user() -> id,
+            'jenis_id' => 1,
+            'status' => 1,
+            'tanggal' => $request -> tanggal,
+            'mengingat' => $request -> mengingat,
+            'menimbang' => $request -> menimbang,
+            'tema' => $request -> tema,
+            'menetapkan' => $request -> menetapkan,
+        ]);
+        return redirect('adminrpl/suratkeluaradm');
+    }
+
     public function viewsuratadm($id) {
         $asurat = PengajuanSurat::findorfail($id);
         return view('adminrpl.detailpsadm',compact('asurat'));
@@ -308,7 +325,11 @@ class AdminController extends Controller
     public function editsuratdk($id) {
         $pejabat = Pejabat::all();
         $asurat = PengajuanSurat::findorfail($id);
-        return view('adminrpl.editsuratdk',compact('asurat','pejabat'));
+        $exp = $asurat->ni_ang;
+        $exp1 = explode(',',$exp);
+        $esp = $asurat->nama_ang;
+        $esp1 = explode(',',$esp); 
+        return view('adminrpl.editsuratdk',compact('asurat','pejabat','exp1','esp1'));
     }
 
     public function editsurate($id) {
@@ -382,7 +403,11 @@ class AdminController extends Controller
 
     public function updatesuratadm(Request $request,$id) {
         $asurat = PengajuanSurat::find($id);
-        $asurat->update($request->all());
+        //$asurat->update($request->all());
+        $asurat->nomor_surat = $request->nomor_surat;
+        $asurat->validasi = $request->validasi;
+        $asurat->pejabat_id = $request->pejabat_id;
+        $asurat->update();
         return redirect('/adminrpl/pengajuansuratadm')->with('toast_success','Data Berhasil Update');
     }
 
@@ -402,7 +427,7 @@ class AdminController extends Controller
     //Cari Surat
     public function searchadm(Request $request) {
         $cari = $request->key;
-        $asurat = PengajuanSurat::where('tujuan_surat','like',"%".$cari."%")->paginate();
+        $asurat = PengajuanSurat::where('jenis_surat','like',"%".$cari."%")->paginate();
         return view('adminrpl.pengajuansuratadm',compact('asurat'));
     }
 
@@ -416,12 +441,50 @@ class AdminController extends Controller
         return view('adminrpl.validasi',compact('asurat'));
     }
 
-    // public function autocomplete(Request $request){
-    //     $getFields = User::all()
-    //     ->where('niuser',$request->get('niuser'))->first();
-    //     return json_encode($getFields);
-    //     //dd($getFields);
-    // }
+    public function arsipsa(){
+        $asurat = PengajuanSurat::where('jenis_id','1')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
+        ->paginate();
+        //return $psurat;
+        return view('adminrpl.arsipa',compact('asurat'));
+    }
+
+    public function arsipsb(){
+        $asurat = PengajuanSurat::where('jenis_id','2')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
+        ->paginate();
+        //return $psurat;
+        return view('adminrpl.arsipb',compact('asurat'));
+    }
+
+    public function arsipsc(){
+        $asurat = PengajuanSurat::where('jenis_id','3')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
+        ->paginate();
+        //return $psurat;
+        return view('adminrpl.arsipc',compact('asurat'));
+    }
+
+    public function arsipsd(){
+        $asurat = PengajuanSurat::where('jenis_id','4')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
+        ->paginate();
+        //return $psurat;
+        return view('adminrpl.arsipd',compact('asurat'));
+    }
+
+    public function arsipse(){
+        $asurat = PengajuanSurat::where('jenis_id','5')
+        ->whereNotNull('validasi')
+        ->whereNotNull('status')
+        ->paginate();
+        //return $psurat;
+        return view('adminrpl.arsipe',compact('asurat'));
+    }
 
     public function autocomplete(Request $request)
 {
@@ -437,4 +500,7 @@ class AdminController extends Controller
         return response()->json(['message' => $e->getMessage()], 500);
     }
 }
+
+
+
 }
