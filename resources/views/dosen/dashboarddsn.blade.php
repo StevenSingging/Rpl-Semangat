@@ -60,16 +60,4 @@
                     <a href="{{route('arsipskmdsn')}}" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            <div class="col-sm-4 col-6">
-                <div class="small-box bg-warning">
-                    <div class="inner">
-                        <h3>{{$countbc}}</h3>
-                        <p>Berita Acara</p>
-                    </div>
-                <div class="icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                    <a href="" class="small-box-footer">Info Lebih Lanjut <i class="fas fa-arrow-circle-right"></i></a>
-                </div>
-            </div>
 @endsection

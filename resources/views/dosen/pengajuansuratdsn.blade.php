@@ -101,7 +101,6 @@
                             <a class="dropdown-item" href="{{route('surattugaspdsn')}}">Surat Tugas Pribadi</a>
                             <a class="dropdown-item" href="{{route('surattugaskdsn')}}">Surat Tugas Kelompok</a>
                             <a class="dropdown-item" href="{{route('suratkegiatandsn')}}">Surat Keterangan</a>
-                            <a class="dropdown-item" href="">Berita Acara</a>
                         </div>
                         </div>
                     </div>

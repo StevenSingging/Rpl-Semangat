@@ -45,7 +45,9 @@ Route::post('/mahasiswa/simpansuratkegiatanmhs', '\App\Http\Controllers\Mahasisw
 Route::get('/mahasiswa/editsurattgskmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsurattgskmhs')->name('editsurattgskmhs');
 Route::get('/mahasiswa/editsurattgspmhs/{id}', '\App\Http\Controllers\MahasiswaController@editsurattgspmhs')->name('editsurattgspmhs');
 
-Route::post('/mahasiswa/updatesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratmhs')->name('updatesuratmhs');
+Route::post('/mahasiswa/updatesuratgskmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratgskmhs')->name('updatesuratgskmhs');
+Route::post('/mahasiswa/updatesuratgspmhs/{id}', '\App\Http\Controllers\MahasiswaController@updatesuratgspmhs')->name('updatesuratgspmhs');
+
 Route::get('/mahasiswa/deletesuratmhs/{id}', '\App\Http\Controllers\MahasiswaController@deletesuratmhs')->name('deletesuratmhs');
 Route::get('/mahasiswa/arsipstpmhs/', '\App\Http\Controllers\MahasiswaController@arsipstpmhs')->name('arsipstpmhs');
 Route::get('/mahasiswa/arsipstkmhs/', '\App\Http\Controllers\MahasiswaController@arsipstkmhs')->name('arsipstkmhs');
@@ -81,7 +83,10 @@ Route::get('/dosen/editsurattgskdsn/{id}', '\App\Http\Controllers\DosenControlle
 Route::get('/dosen/downloaduratpribadidsn/{id}', '\App\Http\Controllers\MahasiswaController@downloadsurattgsp');
 Route::get('/dosen/downloadtgskdsn/{id}', '\App\Http\Controllers\MahasiswaController@downloadsurattgsk');
 Route::get('/dosen/downloadskdsn/{id}', '\App\Http\Controllers\MahasiswaController@downloadsuratk');
-Route::post('/dosen/updatesuratdsn/{id}', '\App\Http\Controllers\DosenController@updatesuratdsn')->name('updatesuratdsn');
+
+Route::post('/dosen/updatesurattgskdsn/{id}', '\App\Http\Controllers\DosenController@updatesurattgskdsn')->name('updatesurattgskdsn');
+Route::post('/dosen/updatesurattgspdsn/{id}', '\App\Http\Controllers\DosenController@updatesurattgspdsn')->name('updatesurattgspdsn');
+
 Route::get('/dosen/deletesuratdsn/{id}', '\App\Http\Controllers\DosenController@deletesuratdsn')->name('deletesuratdsn');
 Route::get('/dosen/arsipstpdsn/', '\App\Http\Controllers\DosenController@arsipstpdsn')->name('arsipstpdsn');
 Route::get('/dosen/arsipstkdsn/', '\App\Http\Controllers\DosenController@arsipstkdsn')->name('arsipstkdsn');
@@ -125,8 +130,10 @@ Route::get('/adminrpl/editsuratc/{id}', '\App\Http\Controllers\AdminController@e
 Route::get('/adminrpl/editsuratdp/{id}', '\App\Http\Controllers\AdminController@editsuratdp')->name('editsuratdp');
 Route::get('/adminrpl/editsuratdk/{id}', '\App\Http\Controllers\AdminController@editsuratdk')->name('editsuratdk');
 Route::get('/adminrpl/editsurate/{id}', '\App\Http\Controllers\AdminController@editsurate')->name('editsurate');
-Route::post('/adminrpl/updatesuratadm/{id}', '\App\Http\Controllers\AdminController@updatesuratadm')->name('updatesuratadm');
-Route::post('/adminrpl/updatevalidasisuratadm/{id}', '\App\Http\Controllers\AdminController@updatevalidasisuratadm')->name('updatevalidasisuratadm');
+
+Route::post('/adminrpl/updatesurattgskadm/{id}', '\App\Http\Controllers\AdminController@updatesurattgskadm')->name('updatesurattgskadm');
+Route::post('/adminrpl/updatevalidasisurattgskadm/{id}', '\App\Http\Controllers\AdminController@updatevalidasisurattgskadm')->name('updatevalidasisurattgskadm');
+
 Route::get('/adminrpl/deletesuratadm/{id}', '\App\Http\Controllers\AdminController@deletesuratadm')->name('deletesuratadm');
 Route::get('/adminrpl/suratkeluaradm', '\App\Http\Controllers\AdminController@suratkeluaradm')->name('suratkeluaradm');
 

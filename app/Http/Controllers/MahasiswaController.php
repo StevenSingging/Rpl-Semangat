@@ -151,11 +151,33 @@ class MahasiswaController extends Controller
         return view('mahasiswa.editsurattgskmhs',compact('psurat','exp1','esp1'));
     }
 
-    public function updatesuratmhs(Request $request,$id_per) {
-        $psurat = PengajuanSurat::find($id_per);
-        $psurat->update($request->all());
-        return redirect('/mahasiswa/pengajuansuratmhs')->with('toast_success','Data Berhasil Update');
+
+    public function updatesuratgskmhs(Request $request,$id) {
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
+        $psurat = PengajuanSurat::find($id);
+        $psurat->tanggal = $request->tanggal;
+        $psurat->nama_mitra = $request->nama_mitra;
+        $psurat->tema = $request->tema;
+        $psurat->keterangan = $request->keterangan;
+        $psurat->lokasi = $request->lokasi;
+        $psurat->ni_ang = $niang;
+        $psurat->nama_ang = $nmang;
+        $psurat->save();
+        return redirect('/mahasiswa/pengajuansuratmhs')->with('edit','Data berhasil di Ubah');
     }
+
+    public function updatesuratgspmhs(Request $request,$id) {
+        $psurat = PengajuanSurat::find($id);
+        $psurat->tanggal = $request->tanggal;
+        $psurat->nama_mitra = $request->nama_mitra;
+        $psurat->tema = $request->tema;
+        $psurat->keterangan = $request->keterangan;
+        $psurat->lokasi = $request->lokasi;
+        $psurat->save();
+        return redirect('/mahasiswa/pengajuansuratmhs')->with('edit','Data berhasil di Ubah');
+    }
+
 
 
     public function deletesuratmhs($id) {

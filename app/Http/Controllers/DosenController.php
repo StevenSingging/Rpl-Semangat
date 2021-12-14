@@ -150,9 +150,29 @@ class DosenController extends Controller
         return view('dosen.editsurattgskdsn',compact('psurat','tgs1','esp1'));
     }
 
-    public function updatesuratdsn(Request $request,$id_per) {
-        $psurat = PengajuanSurat::findorfail($id_per);
-        $psurat->update($request->all());
+    public function updatesurattgskdsn(Request $request,$id) {
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
+        $psurat = PengajuanSurat::find($id);
+        $psurat->tanggal = $request->tanggal;
+        $psurat->nama_mitra = $request->nama_mitra;
+        $psurat->tema = $request->tema;
+        $psurat->keterangan = $request->keterangan;
+        $psurat->lokasi = $request->lokasi;
+        $psurat->ni_ang = $niang;
+        $psurat->nama_ang = $nmang;
+        $psurat->save();
+        return redirect('/dosen/pengajuansuratdsn')->with('toast_success','Data Berhasil Update');
+    }
+
+    public function updatesurattgspdsn(Request $request,$id) {
+        $psurat = PengajuanSurat::find($id);
+        $psurat->tanggal = $request->tanggal;
+        $psurat->nama_mitra = $request->nama_mitra;
+        $psurat->tema = $request->tema;
+        $psurat->keterangan = $request->keterangan;
+        $psurat->lokasi = $request->lokasi;
+        $psurat->save();
         return redirect('/dosen/pengajuansuratdsn')->with('toast_success','Data Berhasil Update');
     }
 

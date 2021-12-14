@@ -401,14 +401,38 @@ class AdminController extends Controller
         return view('adminrpl.validasisurate',compact('asurat','pejabat'));
     }
 
-    public function updatesuratadm(Request $request,$id) {
+    public function updatesurattgskadm(Request $request,$id) {
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
         $asurat = PengajuanSurat::find($id);
-        //$asurat->update($request->all());
+        $asurat->tanggal = $request->tanggal;
+        $asurat->nama_mitra = $request->nama_mitra;
+        $asurat->tema = $request->tema;
+        $asurat->keterangan = $request->keterangan;
+        $asurat->lokasi = $request->lokasi;
+        $asurat->ni_ang = $niang;
+        $asurat->nama_ang = $nmang;
+        $asurat->status = $request->status;
+        $asurat->save();
+        return redirect('/adminrpl/pengajuansuratadm');
+    }
+
+    public function updatevalidasisurattgskadm(Request $request,$id) {
+        $niang = implode(",", $request->get('ni_ang'));
+        $nmang = implode(",", $request->get('nama_ang'));
+        $asurat = PengajuanSurat::find($id);
+        $asurat->tanggal = $request->tanggal;
+        $asurat->nama_mitra = $request->nama_mitra;
+        $asurat->tema = $request->tema;
+        $asurat->keterangan = $request->keterangan;
+        $asurat->lokasi = $request->lokasi;
+        $asurat->ni_ang = $niang;
+        $asurat->nama_ang = $nmang;
         $asurat->nomor_surat = $request->nomor_surat;
         $asurat->validasi = $request->validasi;
         $asurat->pejabat_id = $request->pejabat_id;
-        $asurat->update();
-        return redirect('/adminrpl/pengajuansuratadm')->with('toast_success','Data Berhasil Update');
+        $asurat->save();
+        return redirect('/adminrpl/suratkeluaradm');
     }
 
     public function updatevalidasisuratadm(Request $request,$id) {
@@ -446,7 +470,7 @@ class AdminController extends Controller
         ->whereNotNull('validasi')
         ->whereNotNull('status')
         ->paginate();
-        //return $psurat;
+        //return $asurat;
         return view('adminrpl.arsipa',compact('asurat'));
     }
 
@@ -455,7 +479,7 @@ class AdminController extends Controller
         ->whereNotNull('validasi')
         ->whereNotNull('status')
         ->paginate();
-        //return $psurat;
+        //return $asurat;
         return view('adminrpl.arsipb',compact('asurat'));
     }
 
@@ -464,7 +488,7 @@ class AdminController extends Controller
         ->whereNotNull('validasi')
         ->whereNotNull('status')
         ->paginate();
-        //return $psurat;
+        //return $asurat;
         return view('adminrpl.arsipc',compact('asurat'));
     }
 
@@ -473,7 +497,7 @@ class AdminController extends Controller
         ->whereNotNull('validasi')
         ->whereNotNull('status')
         ->paginate();
-        //return $psurat;
+        //return $asurat;
         return view('adminrpl.arsipd',compact('asurat'));
     }
 
@@ -482,7 +506,7 @@ class AdminController extends Controller
         ->whereNotNull('validasi')
         ->whereNotNull('status')
         ->paginate();
-        //return $psurat;
+        //return $asurat;
         return view('adminrpl.arsipe',compact('asurat'));
     }
 

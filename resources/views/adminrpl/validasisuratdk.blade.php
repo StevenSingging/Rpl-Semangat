@@ -20,7 +20,7 @@
 <section class="content">
       <div class="card card-primary card-outline">
             <div class="card-body">
-            <form action="{{url('/adminrpl/updatevalidasisuratadm',$asurat->id)}}" method="post">
+            <form action="{{url('/adminrpl/updatevalidasisurattgskadm',$asurat->id)}}" method="post">
                     {{ csrf_field() }}
                         <div class="form-group row">
                             <label for="inputPassword" class="col-sm-2 col-form-label">Tanggal Kegiatan</label>
