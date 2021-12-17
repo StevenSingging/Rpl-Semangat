@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Pejabat;
 use App\Models\JenisSurat;
 use Illuminate\Support\Carbon;
+use Dompdf\Dompdf;
 class AdminController extends Controller
 {
     //Dashboard Admin
@@ -484,6 +485,13 @@ class AdminController extends Controller
 
     public function updatesuratsketadm(Request $request,$id) {
         $asurat = PengajuanSurat::find($id);
+        $asurat->status = $request->status;
+        $asurat->save();
+        return redirect('/adminrpl/suratkeluaradm');
+    }
+
+    public function updatevalidasisuratsketadm(Request $request,$id) {
+        $asurat = PengajuanSurat::find($id);
         $asurat->nomor_surat = $request->nomor_surat;
         $asurat->validasi = $request->validasi;
         $asurat->pejabat_id = $request->pejabat_id;
@@ -658,6 +666,112 @@ public function downloadsuratk($id){
     $dompdf->render();
     // Output the generated PDF to Browser
     $dompdf->stream('surat_keterangan_'.$id.'.pdf');
+}
+
+public function downloadskdekan($id){
+    $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+    //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+
+    $html= view('skdekan')->with($asurat);
+    //$html= view('surattugaspribadi',$asurat);
+    $dompdf = new Dompdf();
+    //  $dompdf->loadHtml($aData['html']);
+    $dompdf->set_option('isRemoteEnabled', TRUE);
+    $dompdf->loadHtml($html);
+    
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
+    
+    // Render the HTML as PDF
+    $dompdf->render();
+    // Output the generated PDF to Browser
+    $dompdf->stream('surat_keputusan_'.$id.'.pdf');
+}
+
+public function downloadpersonalia($id){
+    
+    $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+    $psurat = PengajuanSurat::find($id);
+    $exp = explode(',',$psurat->ni_ang);
+    $exp1 = explode(',',$psurat->nama_ang);
+    //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+    $html= view('personalia')->with($asurat)->with('exp',$exp)->with('exp1',$exp1);
+    //$html= view('surattugaspribadi',$asurat);
+    $dompdf = new Dompdf();
+    //  $dompdf->loadHtml($aData['html']);
+    $dompdf->set_option('isRemoteEnabled', TRUE);
+    $dompdf->loadHtml($html);
+    
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
+    
+    // Render the HTML as PDF
+    $dompdf->render();
+    // Output the generated PDF to Browser
+    $dompdf->stream('surat_personalia_'.$id.'.pdf');
+}
+
+public function downloadundangan($id){
+    $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+    //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+
+    $html= view('undangan')->with($asurat);
+    //$html= view('surattugaspribadi',$asurat);
+    $dompdf = new Dompdf();
+    //  $dompdf->loadHtml($aData['html']);
+    $dompdf->set_option('isRemoteEnabled', TRUE);
+    $dompdf->loadHtml($html);
+    
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
+    
+    // Render the HTML as PDF
+    $dompdf->render();
+    // Output the generated PDF to Browser
+    $dompdf->stream('surat_undangan_'.$id.'.pdf');
+}
+
+public function downloaddaftarhadir($id){
+    $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+    //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+    $psurat = PengajuanSurat::find($id);
+    $exp = explode(',',$psurat->ni_ang);
+    $exp1 = explode(',',$psurat->nama_ang);
+    $html= view('daftarhadir')->with($asurat)->with('exp',$exp)->with('exp1',$exp1);
+    
+    //$html= view('surattugaspribadi',$asurat);
+    $dompdf = new Dompdf();
+    //  $dompdf->loadHtml($aData['html']);
+    $dompdf->set_option('isRemoteEnabled', TRUE);
+    $dompdf->loadHtml($html);
+    
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
+    
+    // Render the HTML as PDF
+    $dompdf->render();
+    // Output the generated PDF to Browser
+    $dompdf->stream('daftar_hadir_'.$id.'.pdf');
+}
+
+public function downloadberitaacara($id){
+    $asurat['asurat'] = PengajuanSurat::where('id',$id)->first();
+    //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
+
+    $html= view('beritaacara')->with($asurat);
+    //$html= view('surattugaspribadi',$asurat);
+    $dompdf = new Dompdf();
+    //  $dompdf->loadHtml($aData['html']);
+    $dompdf->set_option('isRemoteEnabled', TRUE);
+    $dompdf->loadHtml($html);
+    
+    // (Optional) Setup the paper size and orientation
+    $dompdf->setPaper('A4', 'potrait');
+    
+    // Render the HTML as PDF
+    $dompdf->render();
+    // Output the generated PDF to Browser
+    $dompdf->stream('berita_acara_'.$id.'.pdf');
 }
 
 }
