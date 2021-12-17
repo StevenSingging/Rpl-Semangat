@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PengajuanSurat;
 use App\Models\User;
-
+use Dompdf\Dompdf;
 class DosenController extends Controller
 {
     //Dashboard Dosen
@@ -35,8 +35,7 @@ class DosenController extends Controller
     }
 
     public function pengajuansuratdsn(){
-        $dsnsurat = PengajuanSurat::whereNull('status')
-        ->paginate();
+        $dsnsurat = PengajuanSurat::where('nomor_surat',null)->paginate();
         //return $psurat;
         return view('dosen.pengajuansuratdsn',compact('dsnsurat'));
     }
@@ -126,7 +125,8 @@ class DosenController extends Controller
     public function simpansuratkegiatandsn(Request $request){
         PengajuanSurat::create([
             'user_id' => $request -> user() -> id,
-            'jenis_id' => 2
+            'jenis_id' => 2,
+            
         ]);
         return redirect('dosen/pengajuansuratdsn');
     }
@@ -161,6 +161,7 @@ class DosenController extends Controller
         $psurat->lokasi = $request->lokasi;
         $psurat->ni_ang = $niang;
         $psurat->nama_ang = $nmang;
+        $psurat->status = null;
         $psurat->save();
         return redirect('/dosen/pengajuansuratdsn')->with('toast_success','Data Berhasil Update');
     }
@@ -172,6 +173,7 @@ class DosenController extends Controller
         $psurat->tema = $request->tema;
         $psurat->keterangan = $request->keterangan;
         $psurat->lokasi = $request->lokasi;
+        $psurat->status = null;
         $psurat->save();
         return redirect('/dosen/pengajuansuratdsn')->with('toast_success','Data Berhasil Update');
     }
