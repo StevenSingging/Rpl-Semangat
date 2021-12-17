@@ -224,8 +224,12 @@ class DosenController extends Controller
 
     public function downloadsurattgsk($id){
         $surat['surat'] = PengajuanSurat::where('id',$id)->first();
+        $psurat = PengajuanSurat::find($id);
+       
+        $exp = explode(',',$psurat->ni_ang);
+        $exp1 = explode(',',$psurat->nama_ang);
         //$asurat = ['asurat' => $this-> PengajuanSurat::alldata()] ;
-        $html= view('surattugaskel')->with($surat);
+        $html= view('surattugaskel')->with($surat)->with('exp',$exp)->with('exp1',$exp1);
         //$html= view('surattugaspribadi',$asurat);
         $dompdf = new Dompdf();
         //  $dompdf->loadHtml($aData['html']);
