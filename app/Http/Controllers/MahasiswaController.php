@@ -33,8 +33,8 @@ class MahasiswaController extends Controller
 
     //Tampilan Surat Mahasiswa
     public function pengajuansuratmhs(){
-        $psurat = PengajuanSurat::whereNull('status')
-        ->paginate();
+        $psurat = PengajuanSurat::where('nomor_surat',null)
+        ->paginate(10);
         //return $psurat;
         return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
     }
@@ -142,6 +142,12 @@ class MahasiswaController extends Controller
         $psurat = PengajuanSurat::findorfail($id);
         return view('mahasiswa.editsurattgspmhs',compact('psurat'));
     }
+
+    public function editsuratkeg($id) {
+        $psurat = PengajuanSurat::findorfail($id);
+        return view('mahasiswa.editsuratkeg',compact('psurat'));
+    }
+
     public function editsurattgskmhs($id) {
         $psurat = PengajuanSurat::find($id);
         $exp = $psurat->ni_ang;
@@ -157,6 +163,7 @@ class MahasiswaController extends Controller
         $nmang = implode(",", $request->get('nama_ang'));
         $psurat = PengajuanSurat::find($id);
         $psurat->tanggal = $request->tanggal;
+        $psurat->status = null;
         $psurat->nama_mitra = $request->nama_mitra;
         $psurat->tema = $request->tema;
         $psurat->keterangan = $request->keterangan;
@@ -174,10 +181,10 @@ class MahasiswaController extends Controller
         $psurat->tema = $request->tema;
         $psurat->keterangan = $request->keterangan;
         $psurat->lokasi = $request->lokasi;
+        $psurat->status = null;
         $psurat->save();
         return redirect('/mahasiswa/pengajuansuratmhs')->with('edit','Data berhasil di Ubah');
     }
-
 
 
     public function deletesuratmhs($id) {
@@ -217,13 +224,7 @@ class MahasiswaController extends Controller
 
     }
 
-    //Cari Surat
-    public function searchmhs(Request $request) {
-        $cari = $request->key;
-        $psurat = PengajuanSurat::where('jenis_surat','like',"%".$cari."%")
-        ->paginate();
-        return view('mahasiswa.pengajuansuratmhs',compact('psurat'));
-    }
+
 
     public function downloadsurattgsk($id){
         $surat['surat'] = PengajuanSurat::where('id',$id)->first();
