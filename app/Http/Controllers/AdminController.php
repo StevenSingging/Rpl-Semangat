@@ -413,6 +413,7 @@ class AdminController extends Controller
         $asurat->lokasi = $request->lokasi;
         $asurat->ni_ang = $niang;
         $asurat->nama_ang = $nmang;
+        $asurat->ket_tolak = $request->ket_tolak;
         $asurat->status = $request->status;
         $asurat->save();
         return redirect('/adminrpl/pengajuansuratadm');
@@ -426,6 +427,7 @@ class AdminController extends Controller
         $asurat->keterangan = $request->keterangan;
         $asurat->lokasi = $request->lokasi;
         $asurat->status = $request->status;
+        $asurat->ket_tolak = $request->ket_tolak;
         $asurat->save();
         return redirect('/adminrpl/pengajuansuratadm');
     }
@@ -470,6 +472,7 @@ class AdminController extends Controller
         $asurat->nomor_surat = $request->nomor_surat;
         $asurat->validasi = $request->validasi;
         $asurat->pejabat_id = $request->pejabat_id;
+        $asurat->ket_tolak = $request->ket_tolak;
         $asurat->save();
         return redirect('/adminrpl/pengajuansuratadm');
     }
